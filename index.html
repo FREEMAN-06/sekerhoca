@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ŞEKERHOCA</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
             background: #000; 
             color: #fff; 
@@ -16,41 +17,63 @@
             overflow: hidden;
         }
 
-        /* Marquee: Beyaz zemin üzerine siyah yazı ile dikkat çekici */
-        .marquee-wrap { 
+        /* Marquee: Hızlı, temiz, noktasız */
+        .marquee-container { 
             width: 100%; 
-            overflow: hidden; 
             background: #fff; 
-            padding: 12px 0;
-            border-bottom: 4px solid #fff;
+            padding: 15px 0;
+            overflow: hidden;
+            border-bottom: 2px solid #fff;
         }
-        .marquee { 
+
+        .marquee-text { 
             display: inline-block; 
             white-space: nowrap; 
-            animation: scroll 12s linear infinite; 
-            font-size: 1.5rem; 
+            animation: move 8s linear infinite; 
+            font-size: 1.8rem; 
             font-weight: 900; 
             color: #000;
-            text-transform: uppercase; 
+            text-transform: uppercase;
         }
-        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Daktilo Ekranı */
-        .main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px; }
-        #daktilo { 
-            font-size: clamp(1.2rem, 4vw, 2.5rem); 
-            line-height: 1.6;
-            border-right: 8px solid #fff; 
-            padding-right: 15px; 
-            animation: blink 0.7s infinite; 
-            max-width: 900px;
+        @keyframes move { 
+            0% { transform: translateX(100%); } 
+            100% { transform: translateX(-100%); } 
         }
-        @keyframes blink { 50% { border-color: transparent; } }
+
+        /* Daktilo Ekranı: Minimal ve keskin */
+        .main { 
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px;
+        }
+
+        #daktilo { 
+            font-size: clamp(1.5rem, 5vw, 3rem); 
+            line-height: 1.5;
+            max-width: 800px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 15px;
+            height: 30px;
+            background: #fff;
+            vertical-align: middle;
+            animation: blink 0.6s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
-    <div class="marquee-wrap">
-        <div class="marquee">ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT •</div>
+
+    <div class="marquee-container">
+        <div class="marquee-text">
+            ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT
+        </div>
     </div>
     
     <div class="main">
@@ -58,18 +81,18 @@
     </div>
 
     <script>
-        // Freeman ile biten o daktilo satırı
-        const text = "SİTE YAPIM AŞAMASINDA.\nŞEKER HOCA KOÇLUK VE EDEBİYAT.\nFREEMAN ENTERPRISES © 2020-2026";
+        const text = "SİTE YAPIM AŞAMASINDA\nŞEKER HOCA KOÇLUK VE EDEBİYAT\nFREEMAN ENTERPRISES © 2020-2026";
         const el = document.getElementById("daktilo");
         let i = 0;
         
         function type() {
             if (i < text.length) {
-                // <br> ile alt satıra geçişi sağla
-                el.innerHTML += text.charAt(i) === "\n" ? "<br><br>" : text.charAt(i);
+                el.innerHTML = text.slice(0, i) + '<span class="cursor"></span>';
                 i++;
-                // Daktilo hızı: Biraz daha keskin olsun
-                setTimeout(type, Math.random() * 80 + 30);
+                // Daktilo hızı: Daha mekanik ve ritmik
+                setTimeout(type, 60);
+            } else {
+                el.innerHTML = text + '<span class="cursor"></span>';
             }
         }
         
