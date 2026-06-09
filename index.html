@@ -2,57 +2,17 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ŞEKERHOCA</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: 'Courier New', Courier, monospace; margin: 0; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
         
-        body { 
-            background: #000; 
-            color: #fff; 
-            font-family: 'Courier New', Courier, monospace; 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            overflow: hidden;
-        }
-
-        /* Marquee: Hızlı ve temiz */
-        .marquee-wrap { 
-            width: 100%; 
-            background: #fff; 
-            padding: 12px 0; 
-            overflow: hidden; 
-            border-bottom: 2px solid #fff;
-        }
-        .marquee { 
-            display: inline-block; 
-            white-space: nowrap; 
-            animation: scroll 8s linear infinite; 
-            font-size: 1.5rem; 
-            font-weight: 900; 
-            color: #000;
-            text-transform: uppercase; 
-        }
+        .marquee-wrap { background: #fff; color: #000; padding: 10px 0; overflow: hidden; border-bottom: 2px solid #fff; }
+        .marquee { white-space: nowrap; animation: scroll 5s linear infinite; font-size: 1.5rem; font-weight: 900; text-transform: uppercase; }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Metin alanı */
-        .main { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            padding: 40px; 
-            gap: 20px; /* Her satır arası mesafe */
-        }
-
-        .line { 
-            font-size: clamp(1.2rem, 4vw, 2.5rem); 
-            line-height: 1.2;
-            min-height: 1.2em; /* Yazı bitince boşluk kalmasın */
-        }
-
-        .cursor { display: inline-block; width: 10px; height: 1em; background: #fff; vertical-align: middle; animation: blink 0.7s infinite; }
+        #terminal { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px; font-size: 2rem; }
+        .line { min-height: 2.2rem; }
+        .cursor { display: inline-block; width: 10px; height: 1.5rem; background: #fff; vertical-align: middle; animation: blink 0.7s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
@@ -62,8 +22,7 @@
         <div class="marquee">ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT</div>
     </div>
     
-    <div class="main" id="terminal">
-        </div>
+    <div id="terminal"></div>
 
     <script>
         const sentences = [
@@ -74,34 +33,24 @@
         
         const terminal = document.getElementById("terminal");
 
-        async function typeLine(text, element) {
-            for (let i = 0; i < text.length; i++) {
-                element.innerHTML += text.charAt(i);
-                // Eski daktilo ritmi
-                await new Promise(r => setTimeout(r, Math.random() * 80 + 30));
-            }
-        }
-
-        async function init() {
-            for (let text of sentences) {
-                const lineDiv = document.createElement("div");
-                lineDiv.className = "line";
-                terminal.appendChild(lineDiv);
+        async function type() {
+            for (let sentence of sentences) {
+                const line = document.createElement("div");
+                line.className = "line";
+                terminal.appendChild(line);
                 
-                // Cursor'ı o an yazılan satıra ekle
                 const cursor = document.createElement("span");
                 cursor.className = "cursor";
-                lineDiv.appendChild(cursor);
+                line.appendChild(cursor);
                 
-                await typeLine(text, lineDiv);
-                
-                // Yazı bitince cursor'ı kaldır
+                for (let char of sentence) {
+                    cursor.insertAdjacentText('beforebegin', char);
+                    await new Promise(r => setTimeout(r, Math.random() * 70 + 20));
+                }
                 cursor.remove();
             }
-            // Tüm yazı bitince en alta sabit cursor koyabilirsin istersen
         }
-
-        window.onload = init;
+        window.onload = type;
     </script>
 </body>
 </html>
