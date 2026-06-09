@@ -17,19 +17,18 @@
             overflow: hidden;
         }
 
-        /* Marquee: Hızlı ve temiz */
+        /* Marquee: Sık, hızlı, beyaz zemin */
         .marquee-wrap { 
             width: 100%; 
             background: #fff; 
-            padding: 12px 0; 
-            overflow: hidden; 
-            border-bottom: 2px solid #fff;
+            padding: 10px 0; 
+            overflow: hidden;
         }
         .marquee { 
             display: inline-block; 
             white-space: nowrap; 
-            animation: scroll 8s linear infinite; 
-            font-size: 1.5rem; 
+            animation: scroll 5s linear infinite; 
+            font-size: 1.2rem; 
             font-weight: 900; 
             color: #000;
             text-transform: uppercase; 
@@ -43,13 +42,13 @@
             flex-direction: column; 
             justify-content: center; 
             padding: 40px; 
-            gap: 20px; /* Her satır arası mesafe */
+            gap: 20px; 
         }
 
         .line { 
             font-size: clamp(1.2rem, 4vw, 2.5rem); 
             line-height: 1.2;
-            min-height: 1.2em; /* Yazı bitince boşluk kalmasın */
+            min-height: 1.2em; 
         }
 
         .cursor { display: inline-block; width: 10px; height: 1em; background: #fff; vertical-align: middle; animation: blink 0.7s infinite; }
@@ -59,11 +58,10 @@
 <body>
 
     <div class="marquee-wrap">
-        <div class="marquee">ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT</div>
+        <div class="marquee">ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT</div>
     </div>
     
-    <div class="main" id="terminal">
-        </div>
+    <div class="main" id="terminal"></div>
 
     <script>
         const sentences = [
@@ -77,7 +75,7 @@
         async function typeLine(text, element) {
             for (let i = 0; i < text.length; i++) {
                 element.innerHTML += text.charAt(i);
-                // Eski daktilo ritmi
+                // Daktilo ritmi
                 await new Promise(r => setTimeout(r, Math.random() * 80 + 30));
             }
         }
@@ -88,17 +86,13 @@
                 lineDiv.className = "line";
                 terminal.appendChild(lineDiv);
                 
-                // Cursor'ı o an yazılan satıra ekle
                 const cursor = document.createElement("span");
                 cursor.className = "cursor";
                 lineDiv.appendChild(cursor);
                 
                 await typeLine(text, lineDiv);
-                
-                // Yazı bitince cursor'ı kaldır
                 cursor.remove();
             }
-            // Tüm yazı bitince en alta sabit cursor koyabilirsin istersen
         }
 
         window.onload = init;
