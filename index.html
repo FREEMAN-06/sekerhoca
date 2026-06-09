@@ -3,199 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şekerhoca | YAPIM AŞAMASINDA</title>
+    <title>ŞEKERHOCA | SİSTEM KAPALI</title>
     <style>
-        /* CSS Reset & Brutalist Temel Ayarlar */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* CSS Reset & Saf Anarşi */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
-            /* Saf Çiğ Brutalist Renk Paleti */
-            --bg-color: #FFFFFF;       /* Çiğ Beyaz */
-            --text-color: #000000;     /* Saf Siyah */
-            --brutal-red: #FF0033;     /* Agresif Uyarı Kırmızısı */
-            --border-thick: 5px solid #000000;
+            /* Tavizsiz Renk Paleti */
+            --black: #000000;
+            --white: #ffffff;
+            --red: #FF0022; /* Daha kan kırmızısı, daha sert */
+            --thick: 8px; /* Endüstriyel kalınlıkta çizgiler */
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            /* Sert ve köşeli Serif font */
-            font-family: 'Impact', 'Arial Black', sans-serif; 
+            background-color: var(--black); 
+            color: var(--white);
+            font-family: 'Arial Black', 'Impact', sans-serif;
+            height: 100vh;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            padding: 2vw; /* Ekranın kenarlarında siyah boşluk bırakır */
             overflow: hidden;
-            padding: 20px;
         }
 
-        /* Ana İçerik Kutusu */
-        .container {
-            text-align: center;
-            border: var(--border-thick);
-            padding: 5rem 2rem 4rem 2rem;
-            position: relative;
-            background: var(--bg-color);
-            /* Devasa sert kırmızı gölge */
-            box-shadow: 20px 20px 0px var(--brutal-red); 
-            max-width: 100%;
-            width: 680px;
-            transform: translateY(30px);
-            opacity: 0;
-            animation: slideUpFade 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        /* Ortadaki Zayıf Kutunun Yerini Alan DEVASA PANEL */
+        .brutal-grid {
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr 100px;
+            border: var(--thick) solid var(--white);
+            /* Radikal Çift Çerçeve ve Gölge */
+            outline: 10px solid var(--red); 
+            box-shadow: 25px 25px 0 var(--red);
+        }
+
+        /* Izgara Hücreleri */
+        .cell {
+            border: var(--thick) solid var(--black);
             display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Köşelerdeki Sert Siyah Kareler */
-        .container::before, .container::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: var(--brutal-red);
-            border: var(--border-thick);
-        }
-        .container::before { top: -18px; left: -18px; }
-        .container::after { bottom: -18px; right: -18px; }
-
-        /* Başlık - Devasa, Sıkışık, Agresif Tipografi */
-        h1 {
-            font-size: clamp(3.5rem, 10vw, 6rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -3px;
-            margin-bottom: 2rem;
-            line-height: 0.85;
-            color: var(--text-color);
-        }
-
-        /* Alt Metin - Kara Blok İçinde Beyaz Vurgu */
-        p {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            font-family: 'Courier New', Courier, monospace; 
-            font-weight: 900;
-            background-color: var(--text-color);
-            color: #FFFFFF;
-            padding: 12px 24px;
-            margin-bottom: 3rem;
-            letter-spacing: 2px;
-            border: 3px solid var(--brutal-red);
-            display: inline-block;
-            width: 100%;
-            text-transform: uppercase;
-        }
-
-        /* Kırmızı Brutalist Kare Yükleniyor Animasyonu */
-        .loader {
-            display: inline-flex;
-            gap: 15px;
-            margin-bottom: 4rem;
-        }
-
-        .loader span {
-            width: 25px;
-            height: 25px;
-            background-color: var(--brutal-red);
-            border: 4px solid var(--text-color);
-            animation: bounce 1.2s infinite ease-in-out both;
-        }
-
-        .loader span:nth-child(1) { animation-delay: -0.32s; }
-        .loader span:nth-child(2) { animation-delay: -0.16s; }
-
-        /* Freeman Enterprises İmza Butonu */
-        .freeman-link-container {
-            width: 100%;
-            border-top: var(--border-thick);
-            padding-top: 2rem;
-            margin-top: auto;
-        }
-
-        .freeman-link {
-            text-decoration: none;
-            color: #FFFFFF;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 900;
-            font-size: 1.1rem;
-            background-color: var(--brutal-red);
-            padding: 12px 24px;
-            border: var(--border-thick);
-            box-shadow: 6px 6px 0px var(--text-color);
-            display: inline-block;
-            text-transform: uppercase;
-            transition: all 0.1s steps(2);
-        }
-
-        .freeman-link:hover {
-            transform: translate(3px, 3px);
-            box-shadow: 3px 3px 0px var(--text-color);
-            background-color: var(--text-color);
-            color: var(--brutal-red);
-        }
-
-        /* GÖZE BATAN DEVASA KAYAN YAZI (MARQUEE) */
-        .marquee-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--brutal-red);
-            color: #FFFFFF;
-            padding: 16px 0;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 900;
-            font-size: clamp(1.2rem, 3vw, 1.6rem); /* Yazı büyütüldü */
-            text-transform: uppercase;
+            position: relative;
             overflow: hidden;
-            border-bottom: 6px solid var(--text-color);
-            box-shadow: 0px 5px 0px rgba(0,0,0,0.1);
+        }
+
+        /* --- 1. HÜCRE: Agresif Kayan Yazı (Tüm üstü kaplar) --- */
+        .cell-top {
+            grid-column: 1 / 3;
+            background-color: var(--red);
+            color: var(--black);
+            border-bottom: var(--thick) solid var(--black);
+            align-items: center;
+            padding: 15px 0;
         }
 
         .marquee-text {
-            display: inline-block;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 900;
             white-space: nowrap;
-            animation: marquee 12s linear infinite; /* Hızlandırıldı */
+            /* Hızlı ve sert kayma */
+            animation: marquee 10s linear infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- 2. HÜCRE: Devasa Tipografi (Sol Taraf) --- */
+        .cell-main {
+            grid-column: 1 / 2;
+            background-color: var(--white);
+            color: var(--black);
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 5vw;
+        }
+
+        .cell-main h1 {
+            font-size: clamp(4rem, 10vw, 12rem);
+            line-height: 0.8; /* Harfler üst üste biner, radikal durur */
+            letter-spacing: -0.05em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .cell-main .slashes {
+            color: var(--red);
+            font-size: clamp(3rem, 6vw, 6rem);
+            letter-spacing: -5px;
+        }
+
+        /* --- 3. HÜCRE: Terminal Uyarı Ekranı (Sağ Taraf) --- */
+        .cell-status {
+            grid-column: 2 / 3;
+            background-color: var(--black);
+            color: var(--white);
+            flex-direction: column;
+            justify-content: center;
+            padding: 5vw;
+            border-left: none; /* Sol hücreyle birleşme hissi */
+        }
+
+        .status-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: bold;
+            color: var(--white);
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        /* Metinleri Vurgulama Bandı */
+        .status-text span.highlight {
+            display: inline-block;
+            background-color: var(--red);
+            color: var(--white);
+            padding: 5px 20px;
+            margin-bottom: 15px;
+            border: 4px solid var(--white);
+        }
+
+        .terminal-loader {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: clamp(1.2rem, 2vw, 2rem);
+            color: var(--red);
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        /* Yanıp Sönen Ölümcül İmleç */
+        .cursor {
+            display: inline-block;
+            width: clamp(15px, 2vw, 25px);
+            height: clamp(20px, 3vw, 35px);
+            background-color: var(--red);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        /* --- 4. HÜCRE: Freeman İmza Butonu (Tüm altı kaplar) --- */
+        .cell-footer {
+            grid-column: 1 / 3;
+            background-color: var(--white);
+            border-top: var(--thick) solid var(--black);
+            display: flex;
+            justify-content: flex-end; /* Sağ alt köşeye yasla */
+            align-items: center;
+            padding: 0 4vw;
+            background-image: linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 50%, var(--black) 50%, var(--black) 75%, transparent 75%, transparent);
+            background-size: 20px 20px; /* Uyarı şeridi arka planı */
+        }
+
+        .freeman-link {
+            color: var(--black);
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 900;
+            background: var(--white);
+            padding: 15px 30px;
+            border: var(--thick) solid var(--black);
+            text-transform: uppercase;
+            transition: all 0.1s;
+            /* Butonu ekrandan fırlatır */
+            transform: translateY(-10px) translateX(-10px); 
+            box-shadow: 15px 15px 0 var(--red);
+        }
+
+        .freeman-link:hover {
+            background: var(--red);
+            color: var(--white);
+            transform: translateY(0) translateX(0);
+            box-shadow: 0px 0px 0 var(--black);
         }
 
         /* --- ANİMASYONLAR --- */
-        @keyframes slideUpFade {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0.3); border-radius: 50%; }
-            40% { transform: scale(1) rotate(45deg); border-radius: 0%; }
-        }
-
         @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Sürekli akış için %50 */
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
-        /* --- MOBİL AYARLAR --- */
-        @media (max-width: 480px) {
-            .container {
-                padding: 4rem 1.2rem 2.5rem 1.2rem;
-                box-shadow: 12px 12px 0px var(--brutal-red);
+        /* --- MOBİL İÇİN YIKICI DÜZEN (ALT ALTA BİNER) --- */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .brutal-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto;
+                height: 100%;
+                outline-width: 5px;
+                box-shadow: 10px 10px 0 var(--red);
+                overflow-y: auto; /* Mobilde taşarsa kaydır */
             }
-            .container::before, .container::after {
-                width: 20px;
-                height: 20px;
+            .cell-top { grid-column: 1 / 2; }
+            .cell-main { grid-column: 1 / 2; padding: 40px 20px; border-bottom: none; }
+            .cell-status { grid-column: 1 / 2; padding: 40px 20px; border-left: var(--thick) solid var(--black); border-top: var(--thick) solid var(--black); }
+            .cell-footer { 
+                grid-column: 1 / 2; 
+                padding: 20px; 
+                justify-content: center; 
             }
-            .container::before { top: -12px; left: -12px; }
-            .container::after { bottom: -12px; right: -12px; }
             .freeman-link {
-                font-size: 0.9rem;
-                padding: 10px 18px;
+                transform: translateY(0) translateX(0);
+                box-shadow: 8px 8px 0 var(--red);
+                text-align: center;
                 width: 100%;
             }
         }
@@ -203,25 +221,38 @@
 </head>
 <body>
 
-    <div class="marquee-container">
-        <div class="marquee-text">
-            ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • 
-        </div>
-    </div>
-
-    <div class="container">
-        <h1>Şekerhoca</h1>
-        <p>SİTE YAPIM AŞAMASINDA</p>
+    <div class="brutal-grid">
         
-        <div class="loader">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="cell cell-top">
+            <div class="marquee-text">
+                ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • 
+            </div>
         </div>
 
-        <div class="freeman-link-container">
-            <a href="#" target="_blank" class="freeman-link">DESIGN BY FREEMAN ENTERPRISES</a>
+        <div class="cell cell-main">
+            <h1>
+                ŞEKER<br>
+                HOCA
+            </h1>
+            <div class="slashes">///</div>
         </div>
+
+        <div class="cell cell-status">
+            <div class="status-text">
+                <span class="highlight">SİTE</span><br>
+                YAPIM<br>
+                AŞAMASINDA
+            </div>
+            
+            <div class="terminal-loader">
+                SİSTEM YÜKLENİYOR <span class="cursor"></span>
+            </div>
+        </div>
+
+        <div class="cell cell-footer">
+            <a href="#" target="_blank" class="freeman-link">DESIGN BY FREEMAN</a>
+        </div>
+
     </div>
 
 </body>
