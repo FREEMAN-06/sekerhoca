@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şekerhoca | Yapım Aşamasında</title>
+    <style>
+        /* CSS Reset & Temel Ayarlar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Şekerhoca Edebi Brutalist Renk Paleti */
+            --bg-color: #FDFBF7; /* Fildişi / Krem */
+            --text-color: #1A1A1A; /* Koyu Antrasit / Siyah */
+            --accent-color: #E5A93C; /* Bal Rengi / Cyber Gold */
+            --border-color: #1A1A1A; /* Sert Brutalist Çerçeve Rengi */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Times New Roman', Times, serif; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Ana İçerik Kutusu */
+        .container {
+            text-align: center;
+            border: 4px solid var(--border-color);
+            padding: 4rem 2rem 3rem 2rem;
+            position: relative;
+            background: var(--bg-color);
+            box-shadow: 15px 15px 0px var(--text-color); 
+            max-width: 90%;
+            width: 650px;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Köşelerdeki Brutalist Kare Vurgular */
+        .container::before, .container::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-color);
+            border: 3px solid var(--border-color);
+        }
+        .container::before { top: -14px; left: -14px; }
+        .container::after { bottom: -14px; right: -14px; }
+
+        /* Başlık - Devasa Tipografi */
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        /* Alt Metin - Net ve Sert */
+        p {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-family: 'Courier New', Courier, monospace; 
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            border-top: 3px solid var(--border-color);
+            padding-top: 1rem;
+            line-height: 1.4;
+            letter-spacing: 1px;
+        }
+
+        /* Brutalist Kare Yükleniyor (Loader) Animasyonu */
+        .loader {
+            display: inline-flex;
+            gap: 12px;
+            margin-bottom: 3rem;
+        }
+
+        .loader span {
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border: 3px solid var(--border-color);
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .loader span:nth-child(1) { animation-delay: -0.32s; }
+        .loader span:nth-child(2) { animation-delay: -0.16s; }
+
+        /* Freeman Linki (Brutalist Buton) */
+        .freeman-link-container {
+            width: 100%;
+            border-top: 3px solid var(--border-color);
+            padding-top: 1.5rem;
+            margin-top: auto;
+        }
+
+        .freeman-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 900;
+            font-size: 1rem;
+            background-color: var(--accent-color);
+            padding: 8px 16px;
+            border: 3px solid var(--border-color);
+            box-shadow: 4px 4px 0px var(--text-color);
+            display: inline-block;
+            transition: all 0.1s ease;
+        }
+
+        .freeman-link:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--text-color);
+        }
+
+        /* Kayan Yazı (Marquee) - Tepede */
+        .marquee-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 12px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            overflow: hidden;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        .marquee-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+
+        /* --- KEYFRAMES (ANİMASYONLAR) --- */
+        @keyframes slideUpFade {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- MOBİL UYUM (RESPONSIVE) --- */
+        @media (max-width: 480px) {
+            .container {
+                padding: 2.5rem 1.5rem 2rem 1.5rem;
+                box-shadow: 10px 10px 0px var(--text-color);
+            }
+            .marquee-container {
+                font-size: 0.9rem;
+            }
+            .freeman-link {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-container">
+        <div class="marquee-text">
+            ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • ŞEKER HOCA • KOÇLUK • EDEBİYAT • 
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Şekerhoca</h1>
+        <p>SİTE YAPIM AŞAMASINDA</p>
+        
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="freeman-link-container">
+            <a href="#" target="_blank" class="freeman-link">DESIGN BY FREEMAN ENTERPRISES</a>
+        </div>
+    </div>
+
+</body>
+</html>
