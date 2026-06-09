@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ŞEKERHOCA</title>
     <style>
-        /* CSS Reset - Brutalist Temel */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
@@ -18,92 +17,91 @@
             overflow: hidden;
         }
 
-        /* Marquee */
-        .marquee { 
+        /* Marquee: Hızlı ve temiz */
+        .marquee-wrap { 
+            width: 100%; 
             background: #fff; 
-            color: #000; 
-            padding: 10px 0; 
-            white-space: nowrap; 
+            padding: 12px 0; 
             overflow: hidden; 
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 1.5rem;
             border-bottom: 2px solid #fff;
         }
-        .marquee span { 
+        .marquee { 
             display: inline-block; 
-            animation: marquee 10s linear infinite; 
+            white-space: nowrap; 
+            animation: scroll 8s linear infinite; 
+            font-size: 1.5rem; 
+            font-weight: 900; 
+            color: #000;
+            text-transform: uppercase; 
         }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        @keyframes marquee { 
-            0% { transform: translateX(100%); } 
-            100% { transform: translateX(-100%); } 
-        }
-
-        /* Daktilo Ekranı */
-        .viewport { 
+        /* Metin alanı */
+        .main { 
             flex: 1; 
             display: flex; 
+            flex-direction: column; 
             justify-content: center; 
-            align-items: center; 
-            padding: 20px;
+            padding: 40px; 
+            gap: 20px; /* Her satır arası mesafe */
         }
 
-        #output { 
+        .line { 
             font-size: clamp(1.2rem, 4vw, 2.5rem); 
-            line-height: 1.4;
-            max-width: 800px;
-            width: 100%;
+            line-height: 1.2;
+            min-height: 1.2em; /* Yazı bitince boşluk kalmasın */
         }
 
-        .cursor { 
-            display: inline-block; 
-            width: 0.6ch; 
-            height: 1.2em; 
-            background: #fff; 
-            vertical-align: middle;
-            animation: blink 0.8s infinite;
-        }
-
+        .cursor { display: inline-block; width: 10px; height: 1em; background: #fff; vertical-align: middle; animation: blink 0.7s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <div class="marquee">
-        <span>ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT</span>
+    <div class="marquee-wrap">
+        <div class="marquee">ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT</div>
     </div>
-
-    <main class="viewport">
-        <div id="output"></div>
-    </main>
+    
+    <div class="main" id="terminal">
+        </div>
 
     <script>
-        const content = "SİTE YAPIM AŞAMASINDA\nŞEKER HOCA KOÇLUK VE EDEBİYAT\nFREEMAN ENTERPRISES © 2020-2026";
-        const output = document.getElementById("output");
+        const sentences = [
+            "SİTE YAPIM AŞAMASINDA",
+            "ŞEKER HOCA KOÇLUK VE EDEBİYAT",
+            "FREEMAN ENTERPRISES © 2020-2026"
+        ];
+        
+        const terminal = document.getElementById("terminal");
 
-        // Yardımcı: Bekleme süresi
-        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-        async function typeWriter() {
-            let i = 0;
-            while (i < content.length) {
-                let char = content.charAt(i);
-                
-                // Satır sonlarını işle
-                if (char === "\n") {
-                    output.innerHTML += "<br><br>";
-                } else {
-                    output.innerHTML = output.innerHTML.replace('<span class="cursor"></span>', '') + char + '<span class="cursor"></span>';
-                }
-                
-                // Daktilo hızı (Rastgelelik yok, sabit ve net)
-                await sleep(70);
-                i++;
+        async function typeLine(text, element) {
+            for (let i = 0; i < text.length; i++) {
+                element.innerHTML += text.charAt(i);
+                // Eski daktilo ritmi
+                await new Promise(r => setTimeout(r, Math.random() * 80 + 30));
             }
         }
 
-        window.onload = typeWriter;
+        async function init() {
+            for (let text of sentences) {
+                const lineDiv = document.createElement("div");
+                lineDiv.className = "line";
+                terminal.appendChild(lineDiv);
+                
+                // Cursor'ı o an yazılan satıra ekle
+                const cursor = document.createElement("span");
+                cursor.className = "cursor";
+                lineDiv.appendChild(cursor);
+                
+                await typeLine(text, lineDiv);
+                
+                // Yazı bitince cursor'ı kaldır
+                cursor.remove();
+            }
+            // Tüm yazı bitince en alta sabit cursor koyabilirsin istersen
+        }
+
+        window.onload = init;
     </script>
 </body>
 </html>
