@@ -17,7 +17,6 @@
             overflow: hidden;
         }
 
-        /* Marquee: Hızlı ve temiz */
         .marquee-wrap { 
             width: 100%; 
             background: #fff; 
@@ -36,20 +35,18 @@
         }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Metin alanı */
         .main { 
             flex: 1; 
             display: flex; 
             flex-direction: column; 
-            justify-content: center; 
             padding: 40px; 
-            gap: 20px; /* Her satır arası mesafe */
+            gap: 20px;
         }
 
         .line { 
             font-size: clamp(1.2rem, 4vw, 2.5rem); 
             line-height: 1.2;
-            min-height: 1.2em; /* Yazı bitince boşluk kalmasın */
+            min-height: 1.2em;
         }
 
         .cursor { display: inline-block; width: 10px; height: 1em; background: #fff; vertical-align: middle; animation: blink 0.7s infinite; }
@@ -62,8 +59,7 @@
         <div class="marquee">ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT</div>
     </div>
     
-    <div class="main" id="terminal">
-        </div>
+    <div class="main" id="terminal"></div>
 
     <script>
         const sentences = [
@@ -74,12 +70,24 @@
         
         const terminal = document.getElementById("terminal");
 
-        async function typeLine(text, element) {
+        async function typeLine(text, lineDiv) {
+            // Yazıyı tutacak ayrı bir span oluştur
+            const textSpan = document.createElement("span");
+            lineDiv.appendChild(textSpan);
+            
+            // Cursor'ı ekle
+            const cursor = document.createElement("span");
+            cursor.className = "cursor";
+            lineDiv.appendChild(cursor);
+            
+            // Karakterleri textSpan içine ekle
             for (let i = 0; i < text.length; i++) {
-                element.innerHTML += text.charAt(i);
-                // Eski daktilo ritmi
+                textSpan.textContent += text.charAt(i);
                 await new Promise(r => setTimeout(r, Math.random() * 80 + 30));
             }
+            
+            // İş bitince cursor'ı sil
+            cursor.remove();
         }
 
         async function init() {
@@ -87,18 +95,8 @@
                 const lineDiv = document.createElement("div");
                 lineDiv.className = "line";
                 terminal.appendChild(lineDiv);
-                
-                // Cursor'ı o an yazılan satıra ekle
-                const cursor = document.createElement("span");
-                cursor.className = "cursor";
-                lineDiv.appendChild(cursor);
-                
                 await typeLine(text, lineDiv);
-                
-                // Yazı bitince cursor'ı kaldır
-                cursor.remove();
             }
-            // Tüm yazı bitince en alta sabit cursor koyabilirsin istersen
         }
 
         window.onload = init;
