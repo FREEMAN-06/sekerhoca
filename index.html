@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ŞEKERHOCA</title>
     <style>
+        /* CSS Reset - Brutalist Temel */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
@@ -17,52 +18,51 @@
             overflow: hidden;
         }
 
-        /* Marquee: Hızlı, temiz, noktasız */
-        .marquee-container { 
-            width: 100%; 
+        /* Marquee */
+        .marquee { 
             background: #fff; 
-            padding: 15px 0;
-            overflow: hidden;
+            color: #000; 
+            padding: 10px 0; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.5rem;
             border-bottom: 2px solid #fff;
         }
-
-        .marquee-text { 
+        .marquee span { 
             display: inline-block; 
-            white-space: nowrap; 
-            animation: move 8s linear infinite; 
-            font-size: 1.8rem; 
-            font-weight: 900; 
-            color: #000;
-            text-transform: uppercase;
+            animation: marquee 10s linear infinite; 
         }
 
-        @keyframes move { 
+        @keyframes marquee { 
             0% { transform: translateX(100%); } 
             100% { transform: translateX(-100%); } 
         }
 
-        /* Daktilo Ekranı: Minimal ve keskin */
-        .main { 
+        /* Daktilo Ekranı */
+        .viewport { 
             flex: 1; 
             display: flex; 
-            align-items: center; 
             justify-content: center; 
+            align-items: center; 
             padding: 20px;
         }
 
-        #daktilo { 
-            font-size: clamp(1.5rem, 5vw, 3rem); 
-            line-height: 1.5;
+        #output { 
+            font-size: clamp(1.2rem, 4vw, 2.5rem); 
+            line-height: 1.4;
             max-width: 800px;
+            width: 100%;
         }
 
-        .cursor {
-            display: inline-block;
-            width: 15px;
-            height: 30px;
-            background: #fff;
+        .cursor { 
+            display: inline-block; 
+            width: 0.6ch; 
+            height: 1.2em; 
+            background: #fff; 
             vertical-align: middle;
-            animation: blink 0.6s infinite;
+            animation: blink 0.8s infinite;
         }
 
         @keyframes blink { 50% { opacity: 0; } }
@@ -70,33 +70,40 @@
 </head>
 <body>
 
-    <div class="marquee-container">
-        <div class="marquee-text">
-            ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT
-        </div>
-    </div>
-    
-    <div class="main">
-        <div id="daktilo"></div>
+    <div class="marquee">
+        <span>ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT</span>
     </div>
 
+    <main class="viewport">
+        <div id="output"></div>
+    </main>
+
     <script>
-        const text = "SİTE YAPIM AŞAMASINDA\nŞEKER HOCA KOÇLUK VE EDEBİYAT\nFREEMAN ENTERPRISES © 2020-2026";
-        const el = document.getElementById("daktilo");
-        let i = 0;
-        
-        function type() {
-            if (i < text.length) {
-                el.innerHTML = text.slice(0, i) + '<span class="cursor"></span>';
+        const content = "SİTE YAPIM AŞAMASINDA\nŞEKER HOCA KOÇLUK VE EDEBİYAT\nFREEMAN ENTERPRISES © 2020-2026";
+        const output = document.getElementById("output");
+
+        // Yardımcı: Bekleme süresi
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        async function typeWriter() {
+            let i = 0;
+            while (i < content.length) {
+                let char = content.charAt(i);
+                
+                // Satır sonlarını işle
+                if (char === "\n") {
+                    output.innerHTML += "<br><br>";
+                } else {
+                    output.innerHTML = output.innerHTML.replace('<span class="cursor"></span>', '') + char + '<span class="cursor"></span>';
+                }
+                
+                // Daktilo hızı (Rastgelelik yok, sabit ve net)
+                await sleep(70);
                 i++;
-                // Daktilo hızı: Daha mekanik ve ritmik
-                setTimeout(type, 60);
-            } else {
-                el.innerHTML = text + '<span class="cursor"></span>';
             }
         }
-        
-        window.onload = type;
+
+        window.onload = typeWriter;
     </script>
 </body>
 </html>
