@@ -263,31 +263,52 @@
             margin-bottom: 1.5rem;
         }
 
-        /* ARCHIVE SECTION (CLASSIFIED TABLE) */
+        /* ARCHIVE SECTION (MECHANICAL DRAWER) */
         .archive-container {
             margin: 0 5% 2rem;
             border: 2px solid var(--black);
+            display: flex;
+            flex-direction: column;
         }
 
-        .archive-table {
-            width: 100%;
-            border-collapse: collapse;
+        .archive-header, .archive-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1.5fr;
+            border-bottom: 1px solid var(--black);
         }
 
-        .archive-table th, .archive-table td {
-            text-align: left;
-            padding: 1.5rem;
-            border: 1px solid var(--black);
-        }
-
-        .archive-table th {
+        .archive-header {
             background-color: var(--black);
             color: var(--white);
+            font-weight: bold;
             text-transform: uppercase;
         }
 
-        .archive-row-hidden {
-            display: none;
+        .archive-header > div, .archive-row > div {
+            padding: 1.5rem;
+            border-right: 1px solid var(--black);
+        }
+
+        .archive-header > div:last-child, .archive-row > div:last-child {
+            border-right: none;
+        }
+
+        /* MECHANICAL EXPAND/COLLAPSE */
+        .archive-expand-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .archive-expand-wrapper.is-expanded {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        .archive-expand-content {
+            min-height: 0;
         }
 
         .btn-brutalist {
@@ -405,6 +426,12 @@
             .gallery-grid { columns: 1; }
             footer { flex-direction: column; gap: 1rem; text-align: center; }
             .social-links { gap: 2rem; }
+            .archive-header, .archive-row {
+                grid-template-columns: 1fr 1fr;
+            }
+            .archive-header > div:nth-child(3), .archive-row > div:nth-child(3) {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -477,24 +504,25 @@
     <!-- State Archives (Portfolio) -->
     <h2 class="section-title" id="archive">DEVLET ARŞİVLERİ</h2>
     <div class="archive-container">
-        <table class="archive-table" id="archiveTable">
-            <thead>
-                <tr>
-                    <th>TARİH</th>
-                    <th>DOKÜMAN ADI</th>
-                    <th>DURUM</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>2023-09-12</td><td>YKS Derece Sertifikası - Sayısal</td><td>ONAYLANDI</td></tr>
-                <tr><td>2022-06-15</td><td>Eğitimde Radikal Metotlar Makalesi</td><td>ARŞİVLENDİ</td></tr>
-                <tr><td>2021-08-30</td><td>Yılın Koçu Ödülü</td><td>TASDİK EDİLDİ</td></tr>
-                <tr><td>2020-01-10</td><td>Pedagojik Formasyon Belgesi</td><td>ERİŞİME AÇIK</td></tr>
-                <tr><td>2019-05-20</td><td>İleri Seviye Matematik Semineri</td><td>TAMAMLANDI</td></tr>
-                <tr><td>2018-11-12</td><td>Öğrenci Koçluğu Eğitimi</td><td>SERTİFİKALI</td></tr>
-                <tr><td>2017-03-05</td><td>Eğitimde Teknoloji Kullanımı</td><td>ARŞİVLENDİ</td></tr>
-            </tbody>
-        </table>
+        <div class="archive-header">
+            <div>TARİH</div>
+            <div>DOKÜMAN ADI</div>
+            <div>DURUM</div>
+        </div>
+        <div class="archive-list">
+            <div class="archive-row"><div>2023-09-12</div><div>YKS Derece Sertifikası - Sayısal</div><div>ONAYLANDI</div></div>
+            <div class="archive-row"><div>2022-06-15</div><div>Eğitimde Radikal Metotlar Makalesi</div><div>ARŞİVLENDİ</div></div>
+            <div class="archive-row"><div>2021-08-30</div><div>Yılın Koçu Ödülü</div><div>TASDİK EDİLDİ</div></div>
+            <div class="archive-row"><div>2020-01-10</div><div>Pedagojik Formasyon Belgesi</div><div>ERİŞİME AÇIK</div></div>
+            
+            <div class="archive-expand-wrapper" id="archiveWrapper">
+                <div class="archive-expand-content">
+                    <div class="archive-row"><div>2019-05-20</div><div>İleri Seviye Matematik Semineri</div><div>TAMAMLANDI</div></div>
+                    <div class="archive-row"><div>2018-11-12</div><div>Öğrenci Koçluğu Eğitimi</div><div>SERTİFİKALI</div></div>
+                    <div class="archive-row"><div>2017-03-05</div><div>Eğitimde Teknoloji Kullanımı</div><div>ARŞİVLENDİ</div></div>
+                </div>
+            </div>
+        </div>
     </div>
     <button class="btn-brutalist" id="toggleArchive">[ TÜMÜNÜ GÖSTER ]</button>
 
@@ -557,43 +585,15 @@
             if (menuClose) menuClose.addEventListener('click', toggleMenu);
             mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-            // BULLETPROOF Archive Toggle Logic
+            // MECHANICAL Archive Toggle Logic
             const toggleArchiveBtn = document.getElementById('toggleArchive');
-            const archiveRows = document.querySelectorAll('#archiveTable tbody tr');
-            
-            const INITIAL_LIMIT = 4;
+            const archiveWrapper = document.getElementById('archiveWrapper');
             let isExpanded = false;
 
-            // Initial State: Explicitly hide rows past limit
-            function applyInitialArchiveState() {
-                archiveRows.forEach((row, index) => {
-                    if (index >= INITIAL_LIMIT) {
-                        row.classList.add('archive-row-hidden');
-                        row.style.display = 'none';
-                    } else {
-                        row.style.display = 'table-row';
-                    }
-                });
-            }
-
-            applyInitialArchiveState();
-
-            if (toggleArchiveBtn) {
+            if (toggleArchiveBtn && archiveWrapper) {
                 toggleArchiveBtn.addEventListener('click', () => {
                     isExpanded = !isExpanded;
-                    
-                    archiveRows.forEach((row, index) => {
-                        if (index >= INITIAL_LIMIT) {
-                            if (isExpanded) {
-                                row.classList.remove('archive-row-hidden');
-                                row.style.display = 'table-row';
-                            } else {
-                                row.classList.add('archive-row-hidden');
-                                row.style.display = 'none';
-                            }
-                        }
-                    });
-
+                    archiveWrapper.classList.toggle('is-expanded');
                     toggleArchiveBtn.innerText = isExpanded ? '[ GİZLE ]' : '[ TÜMÜNÜ GÖSTER ]';
                 });
             }
