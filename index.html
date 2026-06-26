@@ -3,103 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ŞEKERHOCA</title>
+    <title>Freeman Enterprises</title>
+    
+    <!-- Modern ve Düz Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            background: #000; 
-            color: #fff; 
-            font-family: 'Courier New', Courier, monospace; 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
+        /* Sıfırlama ve Temel Ayarlar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Üstteki Sonsuz Akan Yazı (Kusursuz Döngü) */
+        .marquee-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0a0a0a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 12px 0;
             overflow: hidden;
         }
 
-        .marquee-wrap { 
-            width: 100%; 
-            background: #fff; 
-            padding: 12px 0; 
-            overflow: hidden; 
-            border-bottom: 2px solid #fff;
-        }
-        .marquee { 
-            display: inline-block; 
-            white-space: nowrap; 
-            animation: scroll 8s linear infinite; 
-            font-size: 1.5rem; 
-            font-weight: 900; 
-            color: #000;
-            text-transform: uppercase; 
-        }
-        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-        .main { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            padding: 40px; 
-            gap: 20px;
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
         }
 
-        .line { 
-            font-size: clamp(1.2rem, 4vw, 2.5rem); 
-            line-height: 1.2;
-            min-height: 1.2em;
+        .marquee-text {
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #555;
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding-right: 5px;
         }
 
-        .cursor { display: inline-block; width: 10px; height: 1em; background: #fff; vertical-align: middle; animation: blink 0.7s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
+        /* Yarıya kadar kayıp başa sararak sonsuz döngü yaratır */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Merkezdeki Daktilo Alanı */
+        .content-box {
+            text-align: center;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .typewriter-container {
+            font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+            font-weight: 700; /* Daha kalın ve tok bir görünüm */
+            line-height: 1.5;
+            margin: 0 auto;
+            color: #f4f4f4;
+            letter-spacing: -0.5px; /* Yazıyı biraz daha derli toplu gösterir */
+        }
+
+        /* Yanıp Sönen İmleç */
+        .cursor {
+            display: inline-block;
+            font-weight: 300;
+            color: #fff;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Alt bilgi */
+        .footer {
+            position: absolute;
+            bottom: 25px;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: #444;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="marquee-wrap">
-        <div class="marquee">ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT ŞEKER HOCA KOÇLUK EDEBİYAT</div>
+    <!-- Sonsuz Akan Yazı (İçerik ikiye katlandı ki döngü kırılmasın) -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <div class="marquee-text">
+                • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES &nbsp;
+            </div>
+            <div class="marquee-text">
+                • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES &nbsp;
+            </div>
+        </div>
     </div>
-    
-    <div class="main" id="terminal"></div>
 
+    <!-- Ana İçerik (Daktilo) -->
+    <div class="content-box">
+        <h1 class="typewriter-container">
+            <span id="typewriter"></span><span class="cursor">_</span>
+        </h1>
+    </div>
+
+    <!-- Alt Bilgi -->
+    <div class="footer">
+        &copy; 2026 / All rights reserved.
+    </div>
+
+    <!-- Çok Satırlı Daktilo Efekti İçin JS -->
     <script>
-        const sentences = [
+        const textLines = [
             "SİTE YAPIM AŞAMASINDA",
             "ŞEKER HOCA KOÇLUK VE EDEBİYAT",
-            "FREEMAN ENTERPRISES © 2020-2026"
+            "FREEMAN ENTERPRISES™ 2026"
         ];
         
-        const terminal = document.getElementById("terminal");
+        const typeTarget = document.getElementById("typewriter");
+        let lineIndex = 0;
+        let charIndex = 0;
 
-        async function typeLine(text, lineDiv) {
-            // Yazıyı tutacak ayrı bir span oluştur
-            const textSpan = document.createElement("span");
-            lineDiv.appendChild(textSpan);
-            
-            // Cursor'ı ekle
-            const cursor = document.createElement("span");
-            cursor.className = "cursor";
-            lineDiv.appendChild(cursor);
-            
-            // Karakterleri textSpan içine ekle
-            for (let i = 0; i < text.length; i++) {
-                textSpan.textContent += text.charAt(i);
-                await new Promise(r => setTimeout(r, Math.random() * 80 + 30));
-            }
-            
-            // İş bitince cursor'ı sil
-            cursor.remove();
-        }
-
-        async function init() {
-            for (let text of sentences) {
-                const lineDiv = document.createElement("div");
-                lineDiv.className = "line";
-                terminal.appendChild(lineDiv);
-                await typeLine(text, lineDiv);
+        function typeWriterEffect() {
+            if (lineIndex < textLines.length) {
+                // Mevcut satırdaki harfleri yazdır
+                if (charIndex < textLines[lineIndex].length) {
+                    typeTarget.innerHTML += textLines[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriterEffect, 50); // Harf yazma hızı (ms)
+                } 
+                // Satır bittiğinde alt satıra geç
+                else {
+                    typeTarget.innerHTML += "<br>";
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriterEffect, 350); // Alt satıra geçme bekleme süresi
+                }
             }
         }
 
-        window.onload = init;
+        // Sayfa yüklendiğinde efekti başlat
+        setTimeout(typeWriterEffect, 600);
     </script>
+
 </body>
 </html>
