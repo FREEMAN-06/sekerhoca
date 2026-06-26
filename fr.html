@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Şeker Hoca | Brutalist & Literary Coaching</title>
+    <title>Şeker Hoca | Edebiyat & Koçluk</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
         /* RESET & BASE */
@@ -24,6 +24,7 @@
             --red: #FF0000;
             --font-brutalist: 'Anton', sans-serif;
             --font-literary: 'Courier Prime', monospace;
+            --font-aesthetic: 'Playfair Display', serif;
         }
 
         html, body {
@@ -177,59 +178,73 @@
             cursor: pointer;
         }
 
-        /* HERO SECTION (MÜKEMMEL EKRANA OTURMA MANTIĞI) */
+        /* HERO SECTION */
         .hero {
-            height: 100dvh; /* Kesinlikle ekran boyu */
             min-height: 100dvh;
             width: 100%;
             background-color: var(--white);
-            padding: 120px 5% 4rem; /* Desktop için normal boşluklar */
+            padding: 140px 5% 4rem; 
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden; /* Dışarı hiçbir şeyin taşmamasını garantiler */
+            overflow: hidden;
         }
 
         .hero-content {
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
-            gap: 5rem;
+            justify-content: space-between; 
+            gap: 2rem;
             width: 100%;
-            max-width: 1200px;
-            height: 100%; /* Kapsayıcının tüm boyunu kullanır */
+            max-width: 1300px;
         }
 
-        /* Güçlü ve Vurgulu Metin */
         .hero-title {
-            font-family: var(--font-brutalist);
-            font-size: clamp(5rem, 9vw, 12rem);
-            line-height: 0.85;
-            color: var(--black);
-            text-shadow: 10px 10px 0px var(--red);
-            text-align: left;
             display: flex;
             flex-direction: column;
-            text-transform: uppercase;
-            flex-shrink: 0; /* Yazının boyutu ezilmez */
+            text-align: left;
+            flex-shrink: 0; 
         }
 
-        /* Hocayı içine alan vurgulu çerçeve */
+        .title-main {
+            font-family: var(--font-aesthetic);
+            font-weight: 900;
+            font-size: clamp(4.5rem, 9.5vw, 12rem); 
+            line-height: 0.9;
+            color: var(--black);
+            text-shadow: 6px 6px 0px var(--red); 
+            text-transform: uppercase;
+            letter-spacing: -2px; 
+        }
+
+        .title-sub {
+            font-family: var(--font-literary);
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: bold;
+            color: var(--white);
+            background-color: var(--black);
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            border: 3px solid var(--red);
+            display: inline-block;
+            width: max-content;
+            letter-spacing: 2px;
+            box-shadow: 6px 6px 0px var(--red);
+        }
+
         .hero-image-wrapper {
             position: relative;
             border: 8px solid var(--black);
             box-shadow: 20px 20px 0px var(--red);
             background-color: var(--white);
-            flex-shrink: 1; /* PC'de gerekirse biraz küçülmesine izin ver */
             width: 100%;
-            max-width: 450px;
-            height: 100%;
-            max-height: 70vh; /* PC'de çok uzamasını engelle */
+            max-width: 500px;
+            height: 65vh; 
             display: flex;
             align-items: center; 
             justify-content: center;
-            overflow: hidden; /* Resim çerçeveden taşmaz */
+            overflow: hidden;
         }
 
         .hero-portrait {
@@ -238,35 +253,7 @@
             height: 100%;
             filter: grayscale(100%) contrast(1.3);
             object-fit: cover;
-            object-position: center 10%; /* Yüze ve omuzlara odaklan */
-        }
-
-        /* MOBİL İÇİN MİLİMETRİK KALİBRASYON (SCROLLSUZ TAM EKRAN) */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 110px 5% 1.5rem; /* Üst header boşluğunu tam ayarla */
-            }
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem; /* Yazı ve resim arası mesafeyi kıstık */
-                padding-top: 0;
-            }
-            .hero-title {
-                text-align: center;
-                text-shadow: 6px 6px 0px var(--red);
-                font-size: clamp(4rem, 15vw, 6rem);
-            }
-            .hero-image-wrapper {
-                flex: 1; /* SİHİRLİ DOKUNUŞ: Kalan tüm dikey boşluğu otomatik hesaplar ve doldurur */
-                min-height: 0; /* İçeriğin esnemesine izin veren altın kural */
-                width: 100%;
-                max-width: 320px; /* Mobilde çok kaba durmasın */
-                max-height: none;
-                border: 5px solid var(--black);
-                box-shadow: 10px 10px 0px var(--red);
-                margin-bottom: 10px; /* Gölgenin kesilmemesi için pay */
-            }
+            object-position: center 10%; 
         }
 
         /* SERVICES GRID */
@@ -280,7 +267,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             border: 2px solid var(--black);
-            margin: 0 5% 4rem;
+            margin: 0 5% 0; /* Alt boşluk sıfırlandı, etiketler buraya yapışacak */
         }
 
         .grid-item {
@@ -298,6 +285,69 @@
         .grid-item h3 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
+        }
+
+        /* TAGS (KAPSAM & BÖLGELER - GÖMÜLÜ EKLENTİ) */
+        .tags-wrapper {
+            margin: 0 5% 4rem;
+            border: 2px solid var(--black);
+            border-top: none; /* Üst çizgiyi kaldırıp grid'e kenetledik */
+            display: flex;
+            flex-direction: column;
+            background-color: var(--white);
+        }
+
+        .tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--black);
+            align-items: stretch;
+        }
+
+        .tags-row:last-child {
+            border-bottom: none;
+        }
+
+        .tags-label {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-brutalist);
+            font-size: 1.5rem;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 200px;
+        }
+
+        .tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem;
+            flex: 1;
+            align-items: center;
+        }
+
+        .tag-box {
+            border: 2px solid var(--black);
+            padding: 0.5rem 1.5rem;
+            font-family: var(--font-brutalist);
+            font-size: 1.3rem;
+            background-color: var(--white);
+            color: var(--black);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .tag-box:hover {
+            background-color: var(--red);
+            color: var(--white);
+            transform: translate(-3px, -3px);
+            box-shadow: 3px 3px 0px var(--black);
         }
 
         /* ARCHIVE SECTION (MECHANICAL DRAWER) */
@@ -330,7 +380,6 @@
             border-right: none;
         }
 
-        /* MECHANICAL EXPAND/COLLAPSE */
         .archive-expand-wrapper {
             display: grid;
             grid-template-rows: 0fr;
@@ -402,18 +451,29 @@
 
         /* CONTACT & SOCIAL ICONS */
         .contact-section {
-            padding: 8rem 5%;
+            padding: 5rem 5%;
             text-align: center;
             border-top: 3px solid var(--black);
         }
 
         .contact-email {
             font-family: var(--font-brutalist);
-            font-size: clamp(2rem, 10vw, 8rem);
+            font-size: clamp(1rem, 5vw, 3rem);
             color: var(--black);
             text-decoration: none;
             display: inline-block;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
+            word-break: break-all;
+        }
+
+        .contact-slogan {
+            font-family: var(--font-brutalist);
+            font-size: clamp(1.5rem, 4vw, 5rem);
+            margin-bottom: 1.5rem;
+            color: var(--red);
+            letter-spacing: 1px;
+                word-break: break-all;
+    word-wrap: break-word;
         }
 
         .contact-email:hover {
@@ -458,6 +518,35 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .hero {
+                height: auto; 
+                padding: 130px 5% 3rem; 
+            }
+            .hero-content {
+                flex-direction: column;
+                justify-content: center;
+                gap: 3rem;
+            }
+            .hero-title {
+                align-items: center;
+            }
+            .title-main {
+                text-align: center;
+                text-shadow: 4px 4px 0px var(--red);
+                font-size: clamp(4rem, 14vw, 6rem);
+            }
+            .title-sub {
+                font-size: 0.9rem;
+                text-align: center;
+                width: 100%;
+                box-shadow: 4px 4px 0px var(--red);
+            }
+            .hero-image-wrapper {
+                height: 50vh; 
+                max-width: 350px;
+                border: 5px solid var(--black);
+                box-shadow: 10px 10px 0px var(--red);
+            }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
             .gallery-grid { columns: 1; }
@@ -469,7 +558,34 @@
             .archive-header > div:nth-child(3), .archive-row > div:nth-child(3) {
                 display: none;
             }
+            .tags-row {
+                flex-direction: column;
+            }
+            .tags-label {
+                justify-content: center;
+                text-align: center;
+            }
+            .tags-grid {
+                justify-content: center;
+            }
         }
+
+        @media (max-width: 720px) {
+    .contact-email {
+        font-size: 1.5rem !important;   /* Yazıyı biraz daha büyüttük */
+        line-height: 1.1 !important;
+        word-break: break-word; 
+    }
+    .contact-slogan {
+    font-size: 2.3rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 1rem !important;
+        padding: 0 10px !important;
+        /* Kelimeleri bölmeyi yasakladık */
+        word-break: normal !important; 
+        overflow-wrap: break-word !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -514,10 +630,11 @@
         <div class="hero-content">
             
             <!-- Yazı -->
-            <h1 class="hero-title">
-                <span>ŞEKER</span>
-                <span>HOCA</span>
-            </h1>
+            <div class="hero-title">
+                <span class="title-main">ŞEKER</span>
+                <span class="title-main">HOCA</span>
+                <span class="title-sub">BAŞARIYA GİDEN YOLDA YOLDAŞINIZ</span>
+            </div>
             
             <!-- Resim ve Çerçeve -->
             <div class="hero-image-wrapper">
@@ -527,7 +644,7 @@
         </div>
     </section>
 
-    <!-- Disciplines -->
+    <!-- Disciplines & Tags Combined -->
     <h2 class="section-title" id="services">DİSİPLİNLER</h2>
     <div class="grid-container">
         <div class="grid-item">
@@ -545,6 +662,30 @@
         <div class="grid-item">
             <h3>MENTORLUK</h3>
             <p>Sadece bir hoca değil, cephede yanınızda duran bir yol gösterici. Başarı tesadüf değildir.</p>
+        </div>
+    </div>
+    
+    <!-- Gömülü Hizmet ve Bölge Barları -->
+    <div class="tags-wrapper">
+        <div class="tags-row">
+            <div class="tags-label">KAPSAM:</div>
+            <div class="tags-grid">
+                <div class="tag-box">HAFTALIK PLANLAMA</div>
+                <div class="tag-box">DENEME ANALİZİ</div>
+                <div class="tag-box">BİREBİR EDEBİYAT</div>
+                <div class="tag-box">KAYGI YÖNETİMİ</div>
+                <div class="tag-box">YKS KAMPLARI</div>
+            </div>
+        </div>
+        <div class="tags-row">
+            <div class="tags-label">YÜZ YÜZE:</div>
+            <div class="tags-grid">
+                <div class="tag-box">KONAK</div>
+                <div class="tag-box">KARABAĞLAR</div>
+                <div class="tag-box">BUCA</div>
+                <div class="tag-box">ALSANCAK</div>
+                <div class="tag-box">BORNOVA</div>
+            </div>
         </div>
     </div>
 
@@ -586,6 +727,7 @@
 
     <!-- Contact & Social -->
     <section class="contact-section" id="contact">
+        <h3 class="contact-slogan">BAŞARI TESADÜF DEĞİL, STRATEJİDİR.</h3>
         <a href="mailto:iletisim@sekerhoca.com" class="contact-email">iletisim@sekerhoca.com</a>
         
         <div class="social-links">
@@ -610,7 +752,7 @@
 
     <footer>
         <p>&copy; 2026 ŞEKER HOCA.</p>
-        <a href="https://freemanlol.pages.dev/" class="footer-link">FREEMAN ENTERPRISES™ (2020 - 2026)</a>
+        <a href="https://freemanlol.pages.dev/" class="footer-link">(2020 - 2026) FREEMAN ENTERPRISES™</a>
     </footer>
 
     <script>
