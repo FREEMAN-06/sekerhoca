@@ -26,6 +26,11 @@
             --font-aesthetic: 'Playfair Display', serif;
         }
 
+        html {
+            scroll-padding-top: 140px; 
+            scroll-behavior: smooth;
+        }
+
         html, body {
             overflow-x: hidden;
             width: 100%;
@@ -33,7 +38,6 @@
             color: var(--black);
             font-family: var(--font-literary);
             line-height: 1.4;
-            scroll-behavior: smooth;
         }
         
         a {
@@ -256,6 +260,69 @@
             object-position: center 10%; 
         }
 
+        /* ABOUT SECTION REFINED */
+        .about-container {
+            margin: 0 5% 4rem;
+            border: 4px solid var(--black);
+            box-shadow: 12px 12px 0px var(--red);
+            background-color: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .about-sidebar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-right: 4px solid var(--black);
+        }
+
+        .about-sidebar h3 {
+            font-size: clamp(4rem, 6vw, 7rem);
+            color: var(--white);
+            text-shadow: 5px 5px 0px var(--red);
+            margin-bottom: 0;
+            line-height: 1;
+        }
+        
+        .about-sidebar p {
+            font-family: var(--font-brutalist);
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            letter-spacing: 2px;
+            color: var(--white);
+            border-top: 3px solid var(--red);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .about-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .about-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .about-text strong {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 2px 8px;
+            font-family: var(--font-brutalist);
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
         /* SERVICES GRID */
         .section-title {
             padding: 4rem 5% 2rem;
@@ -350,7 +417,7 @@
             box-shadow: 3px 3px 0px var(--black);
         }
 
-        /* ARCHIVE SECTION - İKİ SÜTUNLU YAPI */
+        /* ARCHIVE SECTION */
         .archive-container {
             margin: 0 5% 2rem;
             border: 2px solid var(--black);
@@ -360,7 +427,7 @@
 
         .archive-header, .archive-row {
             display: grid;
-            grid-template-columns: 1fr 3fr; /* 2 sütunlu oran */
+            grid-template-columns: 1fr 3fr; 
             border-bottom: 1px solid var(--black);
         }
 
@@ -560,13 +627,30 @@
                 border: 5px solid var(--black);
                 box-shadow: 10px 10px 0px var(--red);
             }
+            
+            /* ABOUT RESPONSIVE */
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .about-sidebar {
+                border-right: none;
+                border-bottom: 4px solid var(--black);
+                padding: 3rem 2rem;
+            }
+            .about-content {
+                padding: 2rem;
+            }
+            .about-text {
+                text-align: left; /* MOBİLDE KELİME ARASI BOŞLUKLARI DÜZELTEN KISIM */
+            }
+
             .nav-links { display: none; }
             .menu-toggle { display: block; }
             .gallery-grid { columns: 1; }
             footer { flex-direction: column; gap: 1rem; text-align: center; }
             .social-links { gap: 2rem; }
             .archive-header, .archive-row {
-                grid-template-columns: 1fr 2fr; /* Mobil için de uyumlu 2 sütun */
+                grid-template-columns: 1fr 2fr;
             }
             .tags-row {
                 flex-direction: column;
@@ -631,7 +715,7 @@
         <a href="#contact" class="mobile-link">İLETİŞİM</a>
     </div>
 
-    <section class="hero" id="about">
+    <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-title">
                 <span class="title-main">ŞEKER</span>
@@ -643,6 +727,23 @@
             </div>
         </div>
     </section>
+
+    <h2 class="section-title" id="about">HAKKIMDA</h2>
+    <div class="about-container">
+        <div class="about-sidebar">
+            <h3>29+ YIL</h3>
+            <p>EĞİTİM VE KOÇLUK TECRÜBESİ</p>
+        </div>
+        <div class="about-content">
+            <p class="about-text">
+                <strong>Şeker Hoca</strong> olarak yılların getirdiği saha tecrübesi ve güçlü akademik altyapımla, öğrencileri sadece bir sınava değil, zihinsel bir devrime hazırlıyorum. Geleneksel ve ezberci sistemin kalıplarını kırarak; analitik düşünmeyi, kriz yönetimini ve psikolojik dayanıklılığı çalışmalarımızın merkezine alıyorum.
+            </p>
+      
+            <p class="about-text">
+                NLP teknikleri, pozitif psikoloji, zihin farkındalığı (mindfulness) ve profesyonel öğrenci koçluğu alanlarındaki uzmanlıklarımla, içindeki gizli potansiyeli performansın zirvesine taşıyorum. Unutma; sınav bir savaş sanatıdır ve doğru strateji, keskin bir zihin, sarsılmaz bir disiplin gerektirir.
+            </p>
+        </div>
+    </div>
 
     <h2 class="section-title" id="services">DİSİPLİNLER</h2>
     <div class="grid-container">
@@ -705,7 +806,7 @@
                 <div class="archive-expand-content">
                     <div class="archive-row"><div>21.01.2022</div><div><a target="_blank" href="sertifikalar/neuro linguistic.pdf" class="archive-link">NLP Teknikleri Eğitimi Sertifikası</a></div></div>
                     <div class="archive-row"><div>21.01.2022</div><div><a target="_blank" href="sertifikalar/positive psychology.pdf" class="archive-link">Eğitimde Pozitif Psikoloji Eğitimi Sertifikası</a></div></div>
-                    <div class="archive-row"><div>31.01.2022</div><div><a target="_blank" href="sertifikalar/cocugunuzunyasamkocu.pdf" class="archive-link">Çocuğunuzun Yaşam Koçu Olun Sertifikası</a></div></ div>
+                    <div class="archive-row"><div>31.01.2022</div><div><a target="_blank" href="sertifikalar/cocugunuzunyasamkocu.pdf" class="archive-link">Çocuğunuzun Yaşam Koçu Olun Sertifikası</a></div></div>
                     <div class="archive-row"><div>31.01.2022</div><div><a target="_blank" href="sertifikalar/verimlicalısma.pdf" class="archive-link">Uluslararası Verimli Çalışma Teknikleri Sertifikası</a></div></div>
                     <div class="archive-row"><div>07.03.2022</div><div><a target="_blank" href="sertifikalar/sorusorma.pdf" class="archive-link">Uluslararası Güçlü Soru Sorma Becerisi Sertifikası </a></div></div>
                     <div class="archive-row"><div>07.03.2022</div><div><a target="_blank" href="sertifikalar/dusuncemuhendisligi.pdf" class="archive-link">Uluslararası Düşünce Mühendisliği Sertifikası</a></div></div>
@@ -714,8 +815,8 @@
                     <div class="archive-row"><div>12.04.2021</div><div><a target="_blank" href="sertifikalar/duygusalozgurlukteknikleri.pdf" class="archive-link">Duygusal Özgürlük Teknikleri</a></div></div>
                     <div class="archive-row"><div>20.03.2021</div><div><a target="_blank" href="sertifikalar/mindfulness.pdf" class="archive-link">MindFulness Başarı Sertifikası</a></div></div>
                     <div class="archive-row"><div>14.02.2021</div><div><a target="_blank" href="sertifikalar/egitimcininegitimi.pdf" class="archive-link">Eğitimcinin Eğitimi Başarı Sertifikası</a></div></div>
-                    <div class="archive-row"><div>01.07.2021</div><div><a target="_blank" href="sertifikalar/bilincaltı.pdf" class="archive-link">Yaşamın Gizli Mimarı Biliçaltı Eğitimi Katılım Belgesi</a></div ></div >
-                </ div >
+                    <div class="archive-row"><div>01.07.2021</div><div><a target="_blank" href="sertifikalar/bilincaltı.pdf" class="archive-link">Yaşamın Gizli Mimarı Biliçaltı Eğitimi Katılım Belgesi</a></div></div>
+                </div>
             </div>
         </div>
     </div>
