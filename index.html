@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Şeker Hoca | Türkçe & Koçluk</title>
 
-
-
 <meta name="description" content="Ezberden uzak, tamamen sana özel bir çalışma planı. İzmir içi LGS/YKS koçluğu ve birebir Türkçe dersleriyle Şeker Hoca işin mutfağında.">
-
-
 <meta name="keywords" content="lgs koçluk, yks koçluk, özel türkçe dersi, birebir eğitim, izmir içi özel ders, izmir içi koçluk, edebiyat özel ders, şeker hoca koçluk, izmir yks hazırlık, sekerhoca, şeker hoca, seker hoca, seker hoca ozel ders, seker hoca türkce">
 
 <!--Geliştirici Bilgisi -->
@@ -20,25 +16,19 @@
 <!-- Open Graph -->
 <!-- ========================================== -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://sekerhoca.com.tr/img/original.png"> 
+<meta property="og:url" content="https://sekerhoca.com.tr/"> 
 <meta property="og:title" content="Şeker Hoca Koçluk ve Türkçe | YKS & LGS Koçluk, Özel Türkçe Dersi">
 <meta property="og:description" content="İzmir içi birebir eğitim, LGS/YKS koçluk hizmetleri ve özel Türkçe dersi. Şeker Hoca ile potansiyelinizi keşfedin.">
-<meta property="og:image" content="https://"> 
+<meta property="og:image" content="https://sekerhoca.com.tr/img/kapakfoto.png"> 
 <meta property="og:site_name" content="Şeker Hoca">
 <meta property="og:locale" content="tr_TR">
 
 <!-- ========================================== -->
-
-+""
 <!-- ========================================== -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Şeker Hoca Koçluk ve Edebiyat | İzmir Özel Ders">
 <meta name="twitter:description" content="İzmir içi YKS/LGS koçluk, birebir eğitim ve özel Türkçe dersleri ile başarıya ulaşın.">
-<meta name="twitter:image" content="img\original.png">
-
-
-
-
+<meta name="twitter:image" content="https://sekerhoca.com.tr/img/kapakfoto.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,6 +77,51 @@
             line-height: 1;
         }
 
+        /* PRELOADER (LOADING SCREEN) */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--black);
+            color: var(--white);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        #preloader.hidden {
+            transform: translateY(-100%);
+        }
+
+        .preloader-text {
+            font-family: var(--font-brutalist);
+            font-size: clamp(4rem, 10vw, 8rem);
+            color: var(--white);
+            text-shadow: 6px 6px 0px var(--red);
+            animation: pulse 1.5s infinite;
+        }
+
+        .preloader-sub {
+            font-family: var(--font-literary);
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-top: 1rem;
+            letter-spacing: 4px;
+            color: var(--white);
+            background-color: var(--red);
+            padding: 0.2rem 1rem;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
         /* TOP MARQUEE (SEAMLESS TICKER) */
         .marquee-container {
             width: 100%;
@@ -117,7 +152,8 @@
         .marquee-content span {
             font-family: var(--font-brutalist);
             font-size: 1.2rem;
-            padding-right: 2rem;
+            padding-right: 3rem; 
+            letter-spacing: 1px; 
         }
 
         @keyframes marquee-scroll {
@@ -676,7 +712,7 @@
                 padding: 2rem;
             }
             .about-text {
-                text-align: left; /* MOBİLDE KELİME ARASI BOŞLUKLARI DÜZELTEN KISIM */
+                text-align: left; 
             }
 
             .nav-links { display: none; }
@@ -718,15 +754,44 @@
 </head>
 <body>
 
+    <!-- PRELOADER EKLENTİSİ -->
+    <div id="preloader">
+        <span class="preloader-text">ŞEKER HOCA</span>
+        <span class="preloader-sub">SİSTEM YÜKLENİYOR...</span>
+    </div>
+
+    <!-- DÜZELTİLMİŞ VE UZATILMIŞ MARQUEE -->
     <div class="marquee-container">
         <div class="marquee-track">
+            <!-- GRUP 1 (GENİŞ EKRANLAR İÇİN UZATILDI) -->
             <div class="marquee-content">
-                <span>✦ KOÇLUK KAYITLARI DEVAM EDİYOR ✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
-                <span>✦ TÜRKÇE BİREBİR ÖZEL DERS ✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ TYT/AYT KOÇLUK ✦</span>
+                <span>✦ BİREBİR TÜRKÇE ✦</span>
+                <span>✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ ŞEKER HOCA ✦</span>
+                <span>✦ TYT/AYT KOÇLUK ✦</span>
+                <span>✦ BİREBİR TÜRKÇE ✦</span>
+                <span>✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ ŞEKER HOCA ✦</span>
+                <span>✦ TYT/AYT KOÇLUK ✦</span>
+                <span>✦ BİREBİR TÜRKÇE ✦</span>
+                <span>✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ ŞEKER HOCA ✦</span>
             </div>
+            <!-- GRUP 2 (KOPYASI - TAKILMAYI ÖNLER) -->
             <div class="marquee-content">
-                <span>✦ TYT/AYT KOÇLUK ✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
-                <span>✦ ÖZEL DERS✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ TYT/AYT KOÇLUK ✦</span>
+                <span>✦ BİREBİR TÜRKÇE ✦</span>
+                <span>✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ ŞEKER HOCA ✦</span>
+                <span>✦ TYT/AYT KOÇLUK ✦</span>
+                <span>✦ BİREBİR TÜRKÇE ✦</span>
+                <span>✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ ŞEKER HOCA ✦</span>
+                <span>✦ TYT/AYT KOÇLUK ✦</span>
+                <span>✦ BİREBİR TÜRKÇE ✦</span>
+                <span>✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ ŞEKER HOCA ✦</span>
             </div>
         </div>
     </div>
@@ -766,7 +831,7 @@
     <h2 class="section-title" id="about">HAKKIMDA</h2>
     <div class="about-container">
         <div class="about-sidebar">
-            <h3>29+ YIL</h3>
+            <h3>30+ YIL</h3>
             <p>EĞİTİM VE KOÇLUK TECRÜBESİ</p>
         </div>
         <div class="about-content">
@@ -872,7 +937,7 @@
 
     <section class="contact-section" id="contact">
         <h3 class="contact-slogan">BAŞARI TESADÜF DEĞİL, STRATEJİDİR.</h3>
-        <a href="mailto:iletisim@sekerhoca.com" class="contact-email">iletisim@sekerhoca.com</a>
+        <a href="mailto:iletisim@sekerhoca.com.tr" class="contact-email">iletisim@sekerhoca.com.tr</a>
         
         <div class="social-links">
             <a target="_blank" href="https://www.instagram.com/sekerhoca35/" class="social-icon-link" title="Instagram">
@@ -896,6 +961,17 @@
     </footer>
 
     <script>
+        // TÜM FOTOĞRAFLAR (DOM + RESİMLER) YÜKLENDİĞİNDE PRELOADER'I KALDIRAN SİSTEM
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('hidden');
+            
+            // Animasyon süresi bitince DOM'dan kaldırıp arkada tıklanabilirliği engellemesin
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 600);
+        });
+
         // DOM LOAD WRAPPER
         document.addEventListener('DOMContentLoaded', () => {
             
