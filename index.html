@@ -2,168 +2,946 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freeman Enterprises</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Şeker Hoca | Türkçe & Koçluk</title>
+
+
+
+<meta name="description" content="Ezberden uzak, tamamen sana özel bir çalışma planı. İzmir içi LGS/YKS koçluğu ve birebir Türkçe dersleriyle Şeker Hoca işin mutfağında.">
+
+
+<meta name="keywords" content="lgs koçluk, yks koçluk, özel türkçe dersi, birebir eğitim, izmir içi özel ders, izmir içi koçluk, edebiyat özel ders, şeker hoca koçluk, izmir yks hazırlık, sekerhoca, şeker hoca, seker hoca, seker hoca ozel ders, seker hoca türkce">
+
+<!--Geliştirici Bilgisi -->
+<meta name="author" content="Freeman Enterprises™">
+<meta name="robots" content="index, follow"> 
+
+<!-- ========================================== -->
+<!-- Open Graph -->
+<!-- ========================================== -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sekerhoca.com.tr/img/original.png"> 
+<meta property="og:title" content="Şeker Hoca Koçluk ve Türkçe | YKS & LGS Koçluk, Özel Türkçe Dersi">
+<meta property="og:description" content="İzmir içi birebir eğitim, LGS/YKS koçluk hizmetleri ve özel Türkçe dersi. Şeker Hoca ile potansiyelinizi keşfedin.">
+<meta property="og:image" content="https://"> 
+<meta property="og:site_name" content="Şeker Hoca">
+<meta property="og:locale" content="tr_TR">
+
+<!-- ========================================== -->
+
++""
+<!-- ========================================== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Şeker Hoca Koçluk ve Edebiyat | İzmir Özel Ders">
+<meta name="twitter:description" content="İzmir içi YKS/LGS koçluk, birebir eğitim ve özel Türkçe dersleri ile başarıya ulaşın.">
+<meta name="twitter:image" content="img\original.png">
+
+
+
+
     
-    <!-- Modern ve Düz Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* Sıfırlama ve Temel Ayarlar */
+        /* RESET & BASE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
+        :root {
+            --white: #FFFFFF;
+            --black: #000000;
+            --red: #FF0000;
+            --font-brutalist: 'Anton', sans-serif;
+            --font-literary: 'Courier Prime', monospace;
+            --font-aesthetic: 'Playfair Display', serif;
         }
 
-        /* Üstteki Sonsuz Akan Yazı (Kusursuz Döngü) */
-        .marquee-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+        html {
+            scroll-padding-top: 140px; 
+            scroll-behavior: smooth;
+        }
+
+        html, body {
+            overflow-x: hidden;
             width: 100%;
-            background: #0a0a0a;
-            border-bottom: 1px solid #1a1a1a;
-            padding: 12px 0;
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-literary);
+            line-height: 1.4;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 {
+            font-family: var(--font-brutalist);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        /* TOP MARQUEE (SEAMLESS TICKER) */
+        .marquee-container {
+            width: 100%;
+            background-color: var(--red);
+            color: var(--black);
             overflow: hidden;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--black);
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .marquee-track {
+            display: flex;
+            white-space: nowrap;
+            width: max-content;
+            animation: marquee-scroll 20s linear infinite;
         }
 
         .marquee-content {
             display: flex;
-            width: max-content;
-            animation: marquee 25s linear infinite;
+            flex-shrink: 0;
         }
 
-        .marquee-text {
-            font-size: 0.8rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            color: #555;
-            text-transform: uppercase;
-            white-space: nowrap;
-            padding-right: 5px;
+        .marquee-content span {
+            font-family: var(--font-brutalist);
+            font-size: 1.2rem;
+            padding-right: 2rem;
         }
 
-        /* Yarıya kadar kayıp başa sararak sonsuz döngü yaratır */
-        @keyframes marquee {
+        @keyframes marquee-scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* Merkezdeki Daktilo Alanı */
-        .content-box {
-            text-align: center;
-            padding: 0 20px;
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 40px;
             width: 100%;
+            background-color: var(--white);
+            border-bottom: 3px solid var(--black);
+            z-index: 999;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .typewriter-container {
-            font-size: clamp(1.2rem, 3.5vw, 2.5rem);
-            font-weight: 700; /* Daha kalın ve tok bir görünüm */
-            line-height: 1.5;
-            margin: 0 auto;
-            color: #f4f4f4;
-            letter-spacing: -0.5px; /* Yazıyı biraz daha derli toplu gösterir */
+        .logo {
+            font-family: var(--font-brutalist);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            text-decoration: none;
+            color: var(--black);
         }
 
-        /* Yanıp Sönen İmleç */
-        .cursor {
-            display: inline-block;
-            font-weight: 300;
-            color: #fff;
-            animation: blink 0.8s step-end infinite;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
-        @keyframes blink {
-            from, to { opacity: 1; }
-            50% { opacity: 0; }
+        .nav-links a {
+            font-family: var(--font-brutalist);
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--black);
         }
 
-        /* Alt bilgi */
-        .footer {
+        .nav-links a:hover {
+            color: var(--red);
+            text-decoration: line-through;
+            text-decoration-thickness: 3px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-family: var(--font-brutalist);
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /* MOBILE MENU OVERLAY */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100dvh;
+            background-color: var(--white);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .mobile-overlay.active {
+            transform: translateY(0);
+        }
+
+        .mobile-overlay a {
+            font-family: var(--font-brutalist);
+            font-size: clamp(3rem, 15vw, 5rem);
+            text-decoration: none;
+            color: var(--black);
+            margin: 0.5rem 0;
+        }
+
+        .mobile-overlay a:hover {
+            color: var(--red);
+            text-decoration: line-through;
+            text-decoration-thickness: 5px;
+        }
+
+        .close-menu {
             position: absolute;
-            bottom: 25px;
-            font-size: 0.75rem;
-            font-weight: 300;
-            color: #444;
+            top: 2rem;
+            right: 2rem;
+            font-family: var(--font-brutalist);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100dvh;
+            width: 100%;
+            background-color: var(--white);
+            padding: 140px 5% 4rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between; 
+            gap: 2rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .hero-title {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            flex-shrink: 0; 
+        }
+
+        .title-main {
+            font-family: var(--font-aesthetic);
+            font-weight: 900;
+            font-size: clamp(4.5rem, 9.5vw, 12rem); 
+            line-height: 0.9;
+            color: var(--black);
+            text-shadow: 6px 6px 0px var(--red); 
+            text-transform: uppercase;
+            letter-spacing: -2px; 
+        }
+
+        .title-sub {
+            font-family: var(--font-literary);
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: bold;
+            color: var(--white);
+            background-color: var(--black);
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            border: 3px solid var(--red);
+            display: inline-block;
+            width: max-content;
+            letter-spacing: 2px;
+            box-shadow: 6px 6px 0px var(--red);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border: 8px solid var(--black);
+            box-shadow: 20px 20px 0px var(--red);
+            background-color: var(--white);
+            width: 100%;
+            max-width: 500px;
+            height: 65vh; 
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-portrait {
+            display: block;
+            width: 100%;
+            height: 100%;
+            filter: grayscale(100%) contrast(1.3);
+            object-fit: cover;
+            object-position: center 10%; 
+        }
+
+        /* ABOUT SECTION REFINED */
+        .about-container {
+            margin: 0 5% 4rem;
+            border: 4px solid var(--black);
+            box-shadow: 12px 12px 0px var(--red);
+            background-color: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .about-sidebar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-right: 4px solid var(--black);
+        }
+
+        .about-sidebar h3 {
+            font-size: clamp(4rem, 6vw, 7rem);
+            color: var(--white);
+            text-shadow: 5px 5px 0px var(--red);
+            margin-bottom: 0;
+            line-height: 1;
+        }
+        
+        .about-sidebar p {
+            font-family: var(--font-brutalist);
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            letter-spacing: 2px;
+            color: var(--white);
+            border-top: 3px solid var(--red);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .about-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .about-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .about-text strong {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 2px 8px;
+            font-family: var(--font-brutalist);
+            font-weight: normal;
             letter-spacing: 1px;
+        }
+
+        /* SERVICES GRID */
+        .section-title {
+            padding: 4rem 5% 2rem;
+            font-size: clamp(3rem, 8vw, 6rem);
+            border-top: 3px solid var(--black);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            border: 2px solid var(--black);
+            margin: 0 5% 0;
+        }
+
+        .grid-item {
+            border: 2px solid var(--black);
+            padding: 3rem;
+            transition: all 0.1s steps(1);
+            background-color: var(--white);
+        }
+
+        .grid-item:hover {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .grid-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* TAGS (KAPSAM & BÖLGELER) */
+        .tags-wrapper {
+            margin: 0 5% 4rem;
+            border: 2px solid var(--black);
+            border-top: none;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--white);
+        }
+
+        .tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--black);
+            align-items: stretch;
+        }
+
+        .tags-row:last-child {
+            border-bottom: none;
+        }
+
+        .tags-label {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--font-brutalist);
+            font-size: 1.5rem;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 200px;
+        }
+
+        .tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem;
+            flex: 1;
+            align-items: center;
+        }
+
+        .tag-box {
+            border: 2px solid var(--black);
+            padding: 0.5rem 1.5rem;
+            font-family: var(--font-brutalist);
+            font-size: 1.3rem;
+            background-color: var(--white);
+            color: var(--black);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .tag-box:hover {
+            background-color: var(--red);
+            color: var(--white);
+            transform: translate(-3px, -3px);
+            box-shadow: 3px 3px 0px var(--black);
+        }
+
+        /* ARCHIVE SECTION */
+        .archive-container {
+            margin: 0 5% 2rem;
+            border: 2px solid var(--black);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .archive-header, .archive-row {
+            display: grid;
+            grid-template-columns: 1fr 3fr; 
+            border-bottom: 1px solid var(--black);
+        }
+
+        .archive-header {
+            background-color: var(--black);
+            color: var(--white);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .archive-header > div, .archive-row > div {
+            padding: 1.5rem;
+            border-right: 1px solid var(--black);
+        }
+
+        .archive-header > div:last-child, .archive-row > div:last-child {
+            border-right: none;
+        }
+
+        .archive-link {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .archive-link:hover {
+            color: var(--red);
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+        }
+
+        .archive-expand-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .archive-expand-wrapper.is-expanded {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        .archive-expand-content {
+            min-height: 0;
+        }
+
+        .btn-brutalist {
+            display: block;
+            width: max-content;
+            margin: 0 auto 4rem;
+            padding: 1rem 2rem;
+            background-color: var(--white);
+            color: var(--black);
+            border: 3px solid var(--black);
+            font-family: var(--font-brutalist);
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-brutalist:hover {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        /* GALLERY (MASONRY) */
+        .gallery-grid {
+            columns: 3 300px;
+            column-gap: 1rem;
+            padding: 0 5% 4rem;
+        }
+
+        .gallery-item {
+            margin-bottom: 1rem;
+            break-inside: avoid;
+            border: 3px solid transparent;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            display: block;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            filter: grayscale(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            border: 3px solid var(--red);
+            transform: scale(1.03);
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* CONTACT & SOCIAL ICONS */
+        .contact-section {
+            padding: 5rem 5%;
+            text-align: center;
+            border-top: 3px solid var(--black);
+        }
+
+        .contact-email {
+            font-family: var(--font-brutalist);
+            font-size: clamp(1rem, 5vw, 3rem);
+            color: var(--black);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 2rem;
+            word-break: break-all;
+        }
+
+        .contact-slogan {
+            font-family: var(--font-brutalist);
+            font-size: clamp(1.5rem, 4vw, 5rem);
+            margin-bottom: 1.5rem;
+            color: var(--red);
+            letter-spacing: 1px;
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        .contact-email:hover {
+            color: var(--red);
+            text-decoration: line-through;
+            text-decoration-thickness: clamp(4px, 1vw, 10px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon-link {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .social-icon-link svg {
+            width: 48px;
+            height: 48px;
+            fill: var(--black);
+            transition: all 0.1s steps(1); 
+            display: block;
+        }
+
+        .social-icon-link:hover svg {
+            fill: var(--red);
+            filter: drop-shadow(2px 2px 0px var(--black));
+        }
+
+        footer {
+            border-top: 3px solid var(--black);
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto; 
+                padding: 130px 5% 3rem; 
+            }
+            .hero-content {
+                flex-direction: column;
+                justify-content: center;
+                gap: 3rem;
+            }
+            .hero-title {
+                align-items: center;
+            }
+            .title-main {
+                text-align: center;
+                text-shadow: 4px 4px 0px var(--red);
+                font-size: clamp(4rem, 14vw, 6rem);
+            }
+            .title-sub {
+                font-size: 0.9rem;
+                text-align: center;
+                width: 100%;
+                box-shadow: 4px 4px 0px var(--red);
+            }
+            .hero-image-wrapper {
+                height: 50vh; 
+                max-width: 350px;
+                border: 5px solid var(--black);
+                box-shadow: 10px 10px 0px var(--red);
+            }
+            
+            /* ABOUT RESPONSIVE */
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .about-sidebar {
+                border-right: none;
+                border-bottom: 4px solid var(--black);
+                padding: 3rem 2rem;
+            }
+            .about-content {
+                padding: 2rem;
+            }
+            .about-text {
+                text-align: left; /* MOBİLDE KELİME ARASI BOŞLUKLARI DÜZELTEN KISIM */
+            }
+
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .gallery-grid { columns: 1; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; }
+            .social-links { gap: 2rem; }
+            .archive-header, .archive-row {
+                grid-template-columns: 1fr 2fr;
+            }
+            .tags-row {
+                flex-direction: column;
+            }
+            .tags-label {
+                justify-content: center;
+                text-align: center;
+            }
+            .tags-grid {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .contact-email {
+                font-size: 1.5rem !important;  
+                line-height: 1.1 !important;
+                word-break: break-word; 
+            }
+            .contact-slogan {
+                font-size: 2.3rem !important;
+                line-height: 1.1 !important;
+                margin-bottom: 1rem !important;
+                padding: 0 10px !important;
+                word-break: normal !important; 
+                overflow-wrap: break-word !important;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sonsuz Akan Yazı (İçerik ikiye katlandı ki döngü kırılmasın) -->
     <div class="marquee-container">
-        <div class="marquee-content">
-            <div class="marquee-text">
-                • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES &nbsp;
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span>✦ KOÇLUK KAYITLARI DEVAM EDİYOR ✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ TÜRKÇE BİREBİR ÖZEL DERS ✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
             </div>
-            <div class="marquee-text">
-                • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES &nbsp;
+            <div class="marquee-content">
+                <span>✦ TYT/AYT KOÇLUK ✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
+                <span>✦ ÖZEL DERS✦ GELECEĞİNİ ŞANSA BIRAKMA ✦</span>
             </div>
         </div>
     </div>
 
-    <!-- Ana İçerik (Daktilo) -->
-    <div class="content-box">
-        <h1 class="typewriter-container">
-            <span id="typewriter"></span><span class="cursor">_</span>
-        </h1>
+    <nav>
+        <a href="#" class="logo">ŞEKER HOCA</a>
+        <div class="nav-links">
+            <a href="#about">HAKKIMDA</a>
+            <a href="#services">HİZMETLER</a>
+            <a href="#archive">ARŞİV</a>
+            <a href="#contact">İLETİŞİM</a>
+        </div>
+        <button class="menu-toggle" id="menuOpen">MENU</button>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="close-menu" id="menuClose">KAPAT</div>
+        <a href="#about" class="mobile-link">HAKKIMDA</a>
+        <a href="#services" class="mobile-link">HİZMETLER</a>
+        <a href="#archive" class="mobile-link">ARŞİV</a>
+        <a href="#contact" class="mobile-link">İLETİŞİM</a>
     </div>
 
-    <!-- Alt Bilgi -->
-    <div class="footer">
-        &copy; 2026 / All rights reserved.
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-title">
+                <span class="title-main">ŞEKER</span>
+                <span class="title-main">HOCA</span>
+                <span class="title-sub">BAŞARIYA GİDEN YOLDA YOLDAŞINIZ</span>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="hoca.png" alt="Şeker Hoca Portrait" class="hero-portrait">
+            </div>
+        </div>
+    </section>
+
+    <h2 class="section-title" id="about">HAKKIMDA</h2>
+    <div class="about-container">
+        <div class="about-sidebar">
+            <h3>29+ YIL</h3>
+            <p>EĞİTİM VE KOÇLUK TECRÜBESİ</p>
+        </div>
+        <div class="about-content">
+            <p class="about-text">
+                <strong>Şeker Hoca</strong> olarak yılların getirdiği saha tecrübesi ve güçlü akademik altyapımla, öğrencileri sadece bir sınava değil, zihinsel bir devrime hazırlıyorum. Geleneksel ve ezberci sistemin kalıplarını kırarak; analitik düşünmeyi, kriz yönetimini ve psikolojik dayanıklılığı çalışmalarımızın merkezine alıyorum.
+            </p>
+      
+            <p class="about-text">
+                NLP teknikleri, pozitif psikoloji, zihin farkındalığı (mindfulness) ve profesyonel öğrenci koçluğu alanlarındaki uzmanlıklarımla, içindeki gizli potansiyeli performansın zirvesine taşıyorum. Unutma; sınav bir savaş sanatıdır ve doğru strateji, keskin bir zihin, sarsılmaz bir disiplin gerektirir.
+            </p>
+        </div>
     </div>
 
-    <!-- Çok Satırlı Daktilo Efekti İçin JS -->
-    <script>
-        const textLines = [
-            "SİTE YAPIM AŞAMASINDA",
-            "ŞEKER HOCA KOÇLUK VE EDEBİYAT",
-            "FREEMAN ENTERPRISES™ 2026"
-        ];
+    <h2 class="section-title" id="services">DİSİPLİNLER</h2>
+    <div class="grid-container">
+        <div class="grid-item">
+            <h3>STRATEJİ</h3>
+            <p>Sınav maratonunda rastlantıya yer yok. Her adım, her saat, her soru önceden planlanmış bir saldırı planının parçasıdır.</p>
+        </div>
+        <div class="grid-item">
+            <h3>PSİKOLOJİ</h3>
+            <p>Zihin, en güçlü silahınızdır. Korkuyu disipline, kaygıyı odaklanmaya dönüştürmeyi öğreneceksiniz.</p>
+        </div>
+        <div class="grid-item">
+            <h3>TAKİP</h3>
+            <p>Veri yalan söylemez. Haftalık analizler, net artışları ve eksik gediklerin milimetrik tespiti.</p>
+        </div>
+        <div class="grid-item">
+            <h3>MENTORLUK</h3>
+            <p>Sadece bir hoca değil, cephede yanınızda duran bir yol gösterici. Başarı tesadüf değildir.</p>
+        </div>
+    </div>
+    
+    <div class="tags-wrapper">
+        <div class="tags-row">
+            <div class="tags-label">KAPSAM:</div>
+            <div class="tags-grid">
+                <div class="tag-box">HAFTALIK PLANLAMA</div>
+                <div class="tag-box">DENEME ANALİZİ</div>
+                <div class="tag-box">BİREBİR TÜRKÇE</div>
+                <div class="tag-box">KAYGI YÖNETİMİ</div>
+                <div class="tag-box">YKS KAMPLARI</div>
+                <div class="tag-box">LGS KAMPLARI</div>
+            </div>
+        </div>
+        <div class="tags-row">
+            <div class="tags-label">YÜZ YÜZE:</div>
+            <div class="tags-grid">
+                <div class="tag-box">KONAK</div>
+                <div class="tag-box">KARABAĞLAR</div>
+                <div class="tag-box">BUCA</div>
+                <div class="tag-box">ALSANCAK</div>
+                <div class="tag-box">BORNOVA</div>
+                <div class="tag-box">KARŞIYAKA</div>
+                <div class="tag-box">BOSTANLI</div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title" id="archive">ARŞİV</h2>
+    <div class="archive-container">
+        <div class="archive-header">
+            <div>TARİH</div>
+            <div>DOKÜMAN ADI</div>
+        </div>
+        <div class="archive-list">
+            <div class="archive-row"><div>03.07.1995</div><div><a target="_blank" href="sertifikalar/lisans.pdf" class="archive-link">Lisans Diploması</a></div></div>
+            <div class="archive-row"><div>26.07.1996</div><div><a target="_blank" href="sertifikalar/ogretmenlik.pdf" class="archive-link">Öğretmenlik Sertifikası</a></div></div>
+            <div class="archive-row"><div>18.03.2015</div><div><a target="_blank" href="sertifikalar/kocluk.pdf" class="archive-link">Öğrenci Koçluğu Ve Eğitim Danışmanlığı Sertifikası</a></div></div>
+            <div class="archive-row"><div>24.05.2021</div><div><a target="_blank" href="sertifikalar/prokocluk.pdf" class="archive-link">Profosyonel Öğrenci Ve Ebeveyn Koçluğu Sertifikası</a></div></div>
+            <div class="archive-row"><div>24.05.2021</div><div><a target="_blank" href="sertifikalar/yasamkoclugu.pdf" class="archive-link">Yaşam Koçluğu Sertifikası (İstanbul Gedik Üniversitesi)</a></div></div>
+            <div class="archive-row"><div>21.07.2021</div><div><a target="_blank" href="sertifikalar/life coaching.pdf" class="archive-link">Yaşam Koçluğu Sertifikası (Başkent Üniversitesi)</a></div></div>
+
+            <div class="archive-expand-wrapper" id="archiveWrapper">
+                <div class="archive-expand-content">
+                    <div class="archive-row"><div>21.01.2022</div><div><a target="_blank" href="sertifikalar/neuro linguistic.pdf" class="archive-link">NLP Teknikleri Eğitimi Sertifikası</a></div></div>
+                    <div class="archive-row"><div>21.01.2022</div><div><a target="_blank" href="sertifikalar/positive psychology.pdf" class="archive-link">Eğitimde Pozitif Psikoloji Eğitimi Sertifikası</a></div></div>
+                    <div class="archive-row"><div>31.01.2022</div><div><a target="_blank" href="sertifikalar/cocugunuzunyasamkocu.pdf" class="archive-link">Çocuğunuzun Yaşam Koçu Olun Sertifikası</a></div></div>
+                    <div class="archive-row"><div>31.01.2022</div><div><a target="_blank" href="sertifikalar/verimlicalısma.pdf" class="archive-link">Uluslararası Verimli Çalışma Teknikleri Sertifikası</a></div></div>
+                    <div class="archive-row"><div>07.03.2022</div><div><a target="_blank" href="sertifikalar/sorusorma.pdf" class="archive-link">Uluslararası Güçlü Soru Sorma Becerisi Sertifikası </a></div></div>
+                    <div class="archive-row"><div>07.03.2022</div><div><a target="_blank" href="sertifikalar/dusuncemuhendisligi.pdf" class="archive-link">Uluslararası Düşünce Mühendisliği Sertifikası</a></div></div>
+                    <div class="archive-row"><div>25.03.2022</div><div><a target="_blank" href="sertifikalar/ogrencikoclugubasarı.pdf" class="archive-link">Öğrenci Koçluğu Başarı Sertifikası</a></div></div>
+                    <div class="archive-row"><div>10.01.2021</div><div><a target="_blank" href="sertifikalar/yasamkoclugubasari.pdf" class="archive-link">Yaşam Koçluğu Başarı Sertifikası</a></div></div>
+                    <div class="archive-row"><div>12.04.2021</div><div><a target="_blank" href="sertifikalar/duygusalozgurlukteknikleri.pdf" class="archive-link">Duygusal Özgürlük Teknikleri</a></div></div>
+                    <div class="archive-row"><div>20.03.2021</div><div><a target="_blank" href="sertifikalar/mindfulness.pdf" class="archive-link">MindFulness Başarı Sertifikası</a></div></div>
+                    <div class="archive-row"><div>14.02.2021</div><div><a target="_blank" href="sertifikalar/egitimcininegitimi.pdf" class="archive-link">Eğitimcinin Eğitimi Başarı Sertifikası</a></div></div>
+                    <div class="archive-row"><div>01.07.2021</div><div><a target="_blank" href="sertifikalar/bilincaltı.pdf" class="archive-link">Yaşamın Gizli Mimarı Biliçaltı Eğitimi Katılım Belgesi</a></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn-brutalist" id="toggleArchive">[ TÜMÜNÜ GÖSTER ]</button>
+
+    <h2 class="section-title">GÖRSEL BELLEK</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="img/1.JPG" alt="Gallery 1"></div>
+        <div class="gallery-item"><img src="img/2.JPG" alt="Gallery 2"></div>
+        <div class="gallery-item"><img src="img/3.JPG" alt="Gallery 3"></div>
+        <div class="gallery-item"><img src="img/4.JPG" alt="Gallery 4"></div>
+        <div class="gallery-item"><img src="img/5.JPG" alt="Gallery 5"></div>
+        <div class="gallery-item"><img src="img/6.JPG" alt="Gallery 6"></div>   
+    </div>
+
+    <section class="contact-section" id="contact">
+        <h3 class="contact-slogan">BAŞARI TESADÜF DEĞİL, STRATEJİDİR.</h3>
+        <a href="mailto:iletisim@sekerhoca.com" class="contact-email">iletisim@sekerhoca.com</a>
         
-        const typeTarget = document.getElementById("typewriter");
-        let lineIndex = 0;
-        let charIndex = 0;
+        <div class="social-links">
+            <a target="_blank" href="https://www.instagram.com/sekerhoca35/" class="social-icon-link" title="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.31.975.975 1.247 2.242 1.31 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.31 3.608-.975.975-2.242 1.247-3.608 1.31-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.31-.975-.975-1.247-2.242-1.31-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.334-2.633 1.31-3.608.975-.975 2.242-1.247 3.608-1.31 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.337 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.337-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.337-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-icon-link" title="LinkedIn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="#" class="social-icon-link" title="Twitter">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a target="_blank" href="https://wa.me/+905411884549" class="social-icon-link" title="WhatsApp">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            </a>
+        </div>
+    </section>
 
-        function typeWriterEffect() {
-            if (lineIndex < textLines.length) {
-                // Mevcut satırdaki harfleri yazdır
-                if (charIndex < textLines[lineIndex].length) {
-                    typeTarget.innerHTML += textLines[lineIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriterEffect, 50); // Harf yazma hızı (ms)
-                } 
-                // Satır bittiğinde alt satıra geç
-                else {
-                    typeTarget.innerHTML += "<br>";
-                    lineIndex++;
-                    charIndex = 0;
-                    setTimeout(typeWriterEffect, 350); // Alt satıra geçme bekleme süresi
-                }
+    <footer>
+        <p>&copy; 2026 ŞEKER HOCA.</p>
+        <a href="https://freemanlol.pages.dev/" class="footer-link">(2020 - 2026) FREEMAN ENTERPRISES™</a>
+    </footer>
+
+    <script>
+        // DOM LOAD WRAPPER
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Mobile Menu
+            const menuOpen = document.getElementById('menuOpen');
+            const menuClose = document.getElementById('menuClose');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu() {
+                mobileOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : 'auto';
             }
-        }
 
-        // Sayfa yüklendiğinde efekti başlat
-        setTimeout(typeWriterEffect, 600);
+            if (menuOpen) menuOpen.addEventListener('click', toggleMenu);
+            if (menuClose) menuClose.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+            // MECHANICAL Archive Toggle Logic
+            const toggleArchiveBtn = document.getElementById('toggleArchive');
+            const archiveWrapper = document.getElementById('archiveWrapper');
+            let isExpanded = false;
+
+            if (toggleArchiveBtn && archiveWrapper) {
+                toggleArchiveBtn.addEventListener('click', () => {
+                    isExpanded = !isExpanded;
+                    archiveWrapper.classList.toggle('is-expanded');
+                    toggleArchiveBtn.innerText = isExpanded ? '[ GİZLE ]' : '[ TÜMÜNÜ GÖSTER ]';
+                });
+            }
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+        });
     </script>
-
 </body>
 </html>

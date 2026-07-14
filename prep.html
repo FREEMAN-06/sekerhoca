@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freeman Enterprises</title>
+    
+    <!-- Modern ve Düz Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Sıfırlama ve Temel Ayarlar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Üstteki Sonsuz Akan Yazı (Kusursuz Döngü) */
+        .marquee-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0a0a0a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 12px 0;
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-text {
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #555;
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding-right: 5px;
+        }
+
+        /* Yarıya kadar kayıp başa sararak sonsuz döngü yaratır */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Merkezdeki Daktilo Alanı */
+        .content-box {
+            text-align: center;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .typewriter-container {
+            font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+            font-weight: 700; /* Daha kalın ve tok bir görünüm */
+            line-height: 1.5;
+            margin: 0 auto;
+            color: #f4f4f4;
+            letter-spacing: -0.5px; /* Yazıyı biraz daha derli toplu gösterir */
+        }
+
+        /* Yanıp Sönen İmleç */
+        .cursor {
+            display: inline-block;
+            font-weight: 300;
+            color: #fff;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Alt bilgi */
+        .footer {
+            position: absolute;
+            bottom: 25px;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: #444;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sonsuz Akan Yazı (İçerik ikiye katlandı ki döngü kırılmasın) -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <div class="marquee-text">
+                • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES &nbsp;
+            </div>
+            <div class="marquee-text">
+                • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES • YAPIM AŞAMASINDA • ŞEKER_HOCA • KOÇLUK VE EDEBİYAT • FREEMAN ENTERPRISES &nbsp;
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana İçerik (Daktilo) -->
+    <div class="content-box">
+        <h1 class="typewriter-container">
+            <span id="typewriter"></span><span class="cursor">_</span>
+        </h1>
+    </div>
+
+    <!-- Alt Bilgi -->
+    <div class="footer">
+        &copy; 2026 / All rights reserved.
+    </div>
+
+    <!-- Çok Satırlı Daktilo Efekti İçin JS -->
+    <script>
+        const textLines = [
+            "SİTE YAPIM AŞAMASINDA",
+            "ŞEKER HOCA KOÇLUK VE EDEBİYAT",
+            "FREEMAN ENTERPRISES™ 2026"
+        ];
+        
+        const typeTarget = document.getElementById("typewriter");
+        let lineIndex = 0;
+        let charIndex = 0;
+
+        function typeWriterEffect() {
+            if (lineIndex < textLines.length) {
+                // Mevcut satırdaki harfleri yazdır
+                if (charIndex < textLines[lineIndex].length) {
+                    typeTarget.innerHTML += textLines[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriterEffect, 50); // Harf yazma hızı (ms)
+                } 
+                // Satır bittiğinde alt satıra geç
+                else {
+                    typeTarget.innerHTML += "<br>";
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriterEffect, 350); // Alt satıra geçme bekleme süresi
+                }
+            }
+        }
+
+        // Sayfa yüklendiğinde efekti başlat
+        setTimeout(typeWriterEffect, 600);
+    </script>
+
+</body>
+</html>
